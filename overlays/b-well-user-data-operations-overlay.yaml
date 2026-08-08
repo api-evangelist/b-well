@@ -1,0 +1,53 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for b.well User Data Operations
+  version: 1.0.0
+extends: openapi/b-well-user-data-operations-openapi.json
+x-generated: '2026-08-06'
+x-method: generated
+x-source: harvested from https://developer.bwell.com/reference/post_users-id-data-exports
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: b-well
+    x-apievangelist-harvested-from: https://developer.bwell.com/reference/post_users-id-data-exports
+    x-apievangelist-note: >-
+      This document was not served from a downloadable spec URL. b.well's ReadMe-hosted
+      developer portal embeds the OpenAPI in the reference page payload; it was
+      extracted verbatim from there. Every /openapi.json-style path on
+      developer.bwell.com and on api.client-sandbox.icanbwell.com misses (404 and 401
+      respectively), so there is no canonical machine URL an integrator or agent can
+      fetch.
+- target: $.paths['/users/{id}/data-exports'].post
+  update:
+    operationId: initiateUserDataExport
+    tags:
+    - User Data Operations
+    x-apievangelist-note: operationId and tag added by API Evangelist; the published
+      operation declares neither
+    x-agentic-access:
+      action-class: acting
+      consequence: write
+      audit: required
+- target: $.paths['/users/{id}'].delete
+  update:
+    operationId: initiateUserDeletion
+    tags:
+    - User Data Operations
+    x-apievangelist-note: operationId and tag added by API Evangelist; the published
+      operation declares neither
+    x-agentic-access:
+      action-class: acting
+      consequence: safety-critical
+      human-in-the-loop: required
+      audit: required
+      x-note: irreversible deletion of a person's health profile
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+    - no operationIds on either operation
+    - no tags on either operation
+    - no request or response examples
+    - no components.schemas — response bodies are inlined
+    - errors are plain {"message"} JSON rather than RFC 9457 problem+json
+    - no downloadable spec URL

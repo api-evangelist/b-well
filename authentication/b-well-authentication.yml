@@ -1,0 +1,120 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/b-well-user-data-operations-openapi.json
+docs: https://developer.bwell.com/docs/auth-overview
+notes: >-
+  b.well uses OAuth 2.0 for authentication and scope-based authorization across all
+  APIs and services, in two patterns: token exchange with OIDC for end-user context,
+  and client credentials for system context. The published User Data Operations REST
+  API additionally requires HMAC-SHA512 request signing over a canonical set of
+  b.well headers, which is what the derived scheme list below captures. The FHIR
+  hosts publish an anonymous SMART-on-FHIR configuration document naming the real
+  authorization, token, revocation, userinfo and JWKS endpoints (AWS Cognito).
+summary:
+  types:
+  - oauth2
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows:
+  - clientCredentials
+  - tokenExchange
+patterns:
+- name: End-User Authentication
+  model: OAuth 2.0 Token Exchange with OpenID Connect
+  docs: https://developer.bwell.com/docs/end-user-auth
+  description: >-
+    Users authenticate through the integrating application's own Identity Provider.
+    b.well exchanges that OIDC ID token for a b.well access token, preserving user
+    identity across systems and enabling SSO. Used by the Web/Kotlin/Swift SDKs, the
+    Application APIs (GraphQL + REST), and every MCP tool call.
+  example: https://developer.bwell.com/docs/oauth-token-exchange
+  refresh: https://developer.bwell.com/docs/example-token-refresh
+- name: System Authentication
+  model: OAuth 2.0 Client Credentials (RFC 6749 §4.4)
+  docs: https://developer.bwell.com/docs/system-auth
+  description: >-
+    Server-to-server access without user context, for bulk FHIR operations, analytics
+    and data synchronization. Client ID and secret are exchanged at POST
+    {base_url}/oauth2/token for a system-scoped bearer token; typical lifetime 3600s.
+  token_endpoint_pattern: '{fhir_base_url}/oauth2/token'
+  bearer_header: 'Authorization: Bearer {access_token}'
+- name: HMAC request signing
+  model: HMAC-SHA512 over canonical b.well headers
+  applies_to: openapi/b-well-user-data-operations-openapi.json
+  signed_headers:
+  - x-bwell-date
+  - host
+  - x-bwell-client-user-token
+  - x-bwell-client-key
+  - x-bwell-content-sha512
+  authorization_header_form: 'HMAC-SHA512 SignedHeaders=x-bwell-date;host;x-bwell-client-user-token;x-bwell-client-key;x-bwell-content-sha512&Signature=<hmac-sha512-signature>'
+smart_configuration:
+  production:
+    file: well-known/b-well-smart-configuration.json
+    source: https://fhir.icanbwell.com/.well-known/smart-configuration
+    issuer: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Y8fODO5Z7
+    authorization_endpoint: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/authorize
+    token_endpoint: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/token
+    revocation_endpoint: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/revoke
+    userinfo_endpoint: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/userInfo
+    jwks_uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Y8fODO5Z7/.well-known/jwks.json
+    token_endpoint_auth_methods_supported: [client_secret_basic, client_secret_post]
+    id_token_signing_alg_values_supported: [RS256]
+    response_types_supported: [code, token]
+  sandbox:
+    file: well-known/b-well-smart-configuration-sandbox.json
+    source: https://fhir.client-sandbox.icanbwell.com/.well-known/smart-configuration
+    issuer: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_yiNhNGXZ7
+schemes:
+- name: HMACAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: HMAC-SHA512 signature over the canonical signed-header set; the signature
+    is carried in the Authorization header.
+  sources:
+  - openapi/b-well-user-data-operations-openapi.json
+- name: HMACContentSHA512
+  type: apiKey
+  in: header
+  parameter: x-bwell-content-sha512
+  description: The Base64 encoded SHA512 hash of request content.
+  sources:
+  - openapi/b-well-user-data-operations-openapi.json
+- name: HMACHost
+  type: apiKey
+  in: header
+  parameter: Host
+  description: The DNS Host associated with the request.
+  sources:
+  - openapi/b-well-user-data-operations-openapi.json
+- name: HMACDate
+  type: apiKey
+  in: header
+  parameter: x-bwell-date
+  description: UTC Timestamp in RFC1123 format.
+  sources:
+  - openapi/b-well-user-data-operations-openapi.json
+- name: HMACClientUserToken
+  type: apiKey
+  in: header
+  parameter: x-bwell-client-user-token
+  description: Client specific user authentication token.
+  sources:
+  - openapi/b-well-user-data-operations-openapi.json
+- name: HMACClientKey
+  type: apiKey
+  in: header
+  parameter: x-bwell-client-key
+  description: Client key. Provided to the client by b.well.
+  sources:
+  - openapi/b-well-user-data-operations-openapi.json
+- name: BearerToken
+  type: http
+  scheme: bearer
+  description: b.well access token used on the Application APIs, the FHIR Server and
+    the MCP server.
+  sources:
+  - https://developer.bwell.com/docs/system-auth
+  - https://developer.bwell.com/docs/mcp-anthropic

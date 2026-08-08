@@ -1,0 +1,218 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/*.json + https://developer.bwell.com/reference/ts-sdk-apireference
+notes: >-
+  The two published OpenAPI documents describe only three operations and carry almost
+  no schema surface, so the entity graph below is derived from b.well's published SDK
+  API Reference (the object/enum/input catalogue indexed in llms.txt) rather than from
+  the specs. Every entity named here appears as a documented reference page. b.well's
+  core is FHIR R4, so most entities are FHIR resources rather than proprietary objects;
+  the b.well-specific spine is Person -> Connection -> DataSource, with Consent
+  gating what flows through it.
+root_entity:
+  name: Person
+  detail: >-
+    b.well's identity anchor is the FHIR Person record. Nearly every SDK and MCP call
+    resolves a person_id, either passed explicitly or extracted from the
+    `clientFhirPersonId` claim on the access token. The Client Webhook API identifies
+    the client's user by a `urn:client:identifier` identifier on the Person resource.
+  reference: https://developer.bwell.com/reference/user
+entities:
+- name: Person
+  domain: identity
+  reference: https://developer.bwell.com/reference/patient
+- name: Patient
+  domain: identity
+  reference: https://developer.bwell.com/reference/patient
+- name: RelatedPerson
+  domain: identity
+  reference: https://developer.bwell.com/reference/relatedperson
+- name: VerificationResult
+  domain: identity
+  detail: identity verification (including IAL2) status and requirements
+  reference: https://developer.bwell.com/reference/verificationresult
+- name: Consent
+  domain: consent
+  detail: created and read with CategoryCode / ConsentStatus / ConsentProvisionType
+  reference: https://developer.bwell.com/docs/consents-typescript-sdk
+- name: Connection
+  domain: connections
+  detail: a link between a person and an external health data source
+  reference: https://developer.bwell.com/reference/connectionmanager
+- name: DataSource
+  domain: connections
+  detail: the external provider/payer endpoint; carries integrationType, endpointStatus,
+    consentPolicyUrl and consentValidityDuration
+  reference: https://developer.bwell.com/reference/datasourcerequest
+- name: Device
+  domain: devices
+  detail: registered mobile device for push notification delivery
+  reference: https://developer.bwell.com/reference/devicemanager
+- name: Coverage
+  domain: financial
+  reference: https://developer.bwell.com/reference/coveragesrequest
+- name: ExplanationOfBenefit
+  domain: financial
+  reference: https://developer.bwell.com/reference/explanationofbenefitsrequest
+- name: Condition
+  domain: clinical
+- name: AllergyIntolerance
+  domain: clinical
+- name: CarePlan
+  domain: clinical
+- name: CareTeam
+  domain: clinical
+- name: Encounter
+  domain: clinical
+- name: Immunization
+  domain: clinical
+- name: Procedure
+  domain: clinical
+- name: MedicationRequest
+  domain: medications
+- name: DiagnosticReport
+  domain: labs
+- name: Observation
+  domain: labs-and-vitals
+  detail: backs both lab results (get_labs) and vital signs (get_vitals)
+- name: Specimen
+  domain: labs
+- name: DocumentReference
+  domain: documents
+  detail: clinical notes; added to getFhir() in Kotlin SDK 1.15.0
+- name: ServiceRequest
+  domain: orders
+- name: Appointment
+  domain: scheduling
+- name: Practitioner
+  domain: directory
+- name: Organization
+  domain: directory
+  reference: https://developer.bwell.com/reference/searchresponseorganization
+- name: Task
+  domain: engagement
+  detail: care needs, health activities, next best actions, network retrieval tasks
+  reference: https://developer.bwell.com/docs/working-with-tasks
+- name: Questionnaire / QuestionnaireResponse
+  domain: engagement
+  reference: https://developer.bwell.com/reference/questionnairemanager
+- name: Score
+  domain: derived
+  detail: b.well-computed Health Score and Body System Score
+  reference: https://developer.bwell.com/reference/score
+- name: DeviceMetric / DeviceMetricGroup
+  domain: wearables
+relationships:
+- from: Person
+  to: Connection
+  type: has_many
+  via: person_id
+- from: Connection
+  to: DataSource
+  type: belongs_to
+  via: connectionId
+- from: Person
+  to: Consent
+  type: has_many
+  via: person_id
+- from: Consent
+  to: Organization
+  type: belongs_to
+  via: organizationId
+  note: required when the consent category is PROA_ATTESTATION
+- from: Person
+  to: Device
+  type: has_many
+  via: device registration
+- from: Person
+  to: Coverage
+  type: has_many
+  via: person_id
+- from: Coverage
+  to: benefit plan
+  type: has_one
+  via: Coverage.class[type='plan'].value
+- from: Person
+  to: ExplanationOfBenefit
+  type: has_many
+  via: person_id
+- from: Person
+  to: Condition
+  type: has_many
+  via: person_id
+- from: Person
+  to: Observation
+  type: has_many
+  via: person_id
+- from: Person
+  to: MedicationRequest
+  type: has_many
+  via: person_id
+- from: Person
+  to: DocumentReference
+  type: has_many
+  via: person_id
+- from: Person
+  to: Appointment
+  type: has_many
+  via: person_id
+- from: Appointment
+  to: Practitioner
+  type: belongs_to
+  via: provider_id (NPI)
+- from: Appointment
+  to: Organization
+  type: belongs_to
+  via: department_id
+- from: DiagnosticReport
+  to: Observation
+  type: has_many
+  via: result
+- from: DiagnosticReport
+  to: Specimen
+  type: has_one
+  via: specimen
+- from: Person
+  to: Task
+  type: has_many
+  via: person_id
+- from: MedicationRequest
+  to: prescription transfer
+  type: has_one
+  via: prescription_fhir_id
+rest_operations_modelled:
+- 'POST /users/{id}/data-exports — subject is the client-scoped user id, not the FHIR person id'
+- 'DELETE /users/{id} — same identifier space'
+bundles:
+  detail: >-
+    Collection responses are wrapped in bundle types — ResourceBundle, PaginatedBundle,
+    VitalSignBundle, VitalSignGroupBundle — carrying entries plus paging information.
+enumerations:
+- CategoryCode
+- ConnectionCategory
+- ConsentProvisionType
+- ConsentStatus
+- DataConnectionStatus
+- DataConnectionType
+- DevicePlatform
+- EndpointStatus
+- FilterField
+- Gender
+- PersonGender
+- SearchContext
+- SearchResultType
+- SortField
+- SortOrder
+- SyncStatus
+- IntegrationType
+diagrams:
+- url: https://developer.bwell.com/docs/connection-state-diagram
+  scope: Connection state machine
+- url: https://developer.bwell.com/docs/data-connection-sequence-diagram
+  scope: Data connection sequence
+- url: https://developer.bwell.com/docs/medication-module-class-diagram
+  scope: Medication module class diagram
+- url: https://developer.bwell.com/docs/individual-access-service-flow-diagram
+  scope: Smart Connect / IAS flow
+- url: https://developer.bwell.com/docs/onboarding-flow-diagram
+  scope: Onboarding flow

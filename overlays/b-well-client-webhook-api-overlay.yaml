@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for b.well Client Webhook API
+  version: 1.0.0
+extends: openapi/b-well-client-webhook-api-openapi.json
+x-generated: '2026-08-06'
+x-method: generated
+x-source: harvested from https://developer.bwell.com/reference/post_webhook
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: b-well
+    x-apievangelist-harvested-from: https://developer.bwell.com/reference/post_webhook
+    x-apievangelist-surface: webhooks
+    x-apievangelist-note: >-
+      This is the contract the CLIENT implements and b.well calls, not a b.well-hosted
+      endpoint. The '/webhook' path is a placeholder; the real URL is supplied by the
+      client during onboarding and echoed back in MessageHeader.destination.endpoint.
+      The payload is an HL7 FHIR R4 message Bundle.
+- target: $.paths['/webhook'].post
+  update:
+    operationId: receiveBwellWebhookEvent
+    tags:
+    - Webhooks
+    x-apievangelist-note: operationId and tag added by API Evangelist
+    x-apievangelist-event-discriminator: MessageHeader.eventCoding (system + code)
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+    - no servers[] block — the endpoint is client-supplied
+    - no securitySchemes, although a 401 "Invalid HMAC signature" response is defined,
+      so the HMAC verification contract is undocumented in the spec itself
+    - no enumerated eventCoding catalogue, so a client cannot know which events it may
+      receive
+    - no operationId, no tags
+    - no AsyncAPI counterpart

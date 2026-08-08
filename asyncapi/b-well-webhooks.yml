@@ -1,0 +1,87 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/b-well-client-webhook-api-openapi.json + https://developer.bwell.com/reference/webhook
+spec_type: Webhooks
+asyncapi_published: false
+notes: >-
+  b.well publishes no AsyncAPI document. It does publish a real, machine-readable
+  webhook contract: an OpenAPI 3.0.3 document titled "Client Webhook API" describing
+  the endpoint the CLIENT implements and b.well calls. The contract is modelled on the
+  HL7 FHIR messaging specification — b.well POSTs a FHIR `Bundle` of `type: message`
+  whose first entry is a `MessageHeader` carrying an `eventCoding`, a `source.endpoint`,
+  a `destination.endpoint` (the client's own URL) and a `focus[]` reference to the
+  subject resource. The client user is identified by the `urn:client:identifier`
+  identifier value on the `Person` resource in the bundle.
+transport:
+  protocol: https
+  method: POST
+  endpoint: client-supplied — '/webhook' in the spec is a placeholder; the real URL is
+    registered with b.well and echoed back in destination.endpoint
+  content_type: application/json
+  security: HMAC signature (a 401 response is defined for "Invalid HMAC signature")
+message_format:
+  standard: HL7 FHIR R4 messaging
+  references:
+  - https://www.hl7.org/fhir/messaging.html
+  - https://www.hl7.org/fhir/messageheader.html
+  envelope:
+    resourceType: Bundle
+    type: message
+    entry:
+    - resource:
+        resourceType: MessageHeader
+        fields:
+        - eventCoding.system
+        - eventCoding.code
+        - source.endpoint
+        - 'destination[].endpoint'
+        - 'focus[].reference'
+        - 'extension[].url'
+        - 'extension[].valueUri'
+        - 'identifier[]'
+    - resource:
+        resourceType: Person
+        note: carries the urn:client:identifier identifier used to resolve the client's user
+channels:
+- name: async-operation-events
+  direction: b.well -> client
+  description: b.well async operation events handled by the client webhook endpoint.
+  event_discriminator: MessageHeader.eventCoding (system + code)
+  known_subjects:
+  - data export completion (the spec's own bundle id example is `bundle-data-export`,
+    matching POST /users/{id}/data-exports)
+  - user account deletion completion (DELETE /users/{id})
+  note: >-
+    b.well does not publish an enumerated event-code catalogue. The eventCoding
+    vocabulary is not documented, so an integrator cannot know the full set of events
+    it may receive before onboarding.
+  fixable_by: b.well
+responses:
+- status: 200
+  description: Successfully received the webhook event.
+- status: 400
+  description: Invalid request payload.
+- status: 401
+  description: Invalid HMAC signature.
+- status: 500
+  description: Internal server error.
+push_notifications:
+  description: >-
+    A separate, mobile-facing event channel. b.well delivers push notifications through
+    Firebase Cloud Messaging with a structured data payload.
+  docs: https://developer.bwell.com/docs/push-notifications
+  payload_fields: [notification_id, sender, receiver, notification_type, title, body,
+    action_type, action]
+  known_notification_types: [new_record, new_insight]
+gaps:
+- issue: no AsyncAPI document
+  detail: The event surface is real and FHIR-messaging shaped, but there is no AsyncAPI
+    contract an agent or codegen tool can consume.
+  fixable_by: b.well
+- issue: no event-code catalogue
+  detail: MessageHeader.eventCoding is the discriminator, yet no list of codes is published.
+  fixable_by: b.well
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://developer.bwell.com/reference/post_webhook
+  http_status: 200

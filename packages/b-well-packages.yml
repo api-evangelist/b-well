@@ -1,0 +1,87 @@
+generated: '2026-08-06'
+method: searched
+source: npm registry, PyPI, github.com/icanbwell, developer.bwell.com SDK docs
+notes: >-
+  b.well ships four Health SDKs (Web/TypeScript, Android/Kotlin, iOS/Swift, and an
+  AI SDK that is an MCP server rather than a package). Only the TypeScript SDK is
+  published to a public package registry; the Kotlin and Swift SDKs are distributed
+  under a license granted by b.well, so no public Maven Central or CocoaPods
+  coordinate exists (a Maven Central search for `bwell` and `com.icanbwell` returns
+  zero artifacts). The Python packages below are b.well's open-source FHIR data
+  engineering libraries, published from the icanbwell GitHub organization.
+packages:
+- language: typescript
+  registry: npm
+  name: "@icanbwell/bwell-sdk-ts"
+  url: https://www.npmjs.com/package/@icanbwell/bwell-sdk-ts
+  install: npm install @icanbwell/bwell-sdk-ts
+  version: 1.108.0
+  official: true
+  docs: https://developer.bwell.com/docs/websdk-overview
+- language: kotlin
+  registry: licensed
+  name: b.well Health SDK for Android
+  url: https://developer.bwell.com/docs/kotlinsdk-overview
+  install: license required from b.well Connected Health
+  official: true
+  note: not published to Maven Central; distributed to licensed customers
+- language: swift
+  registry: swift-package-manager
+  name: bwell-sdk-swift-package
+  url: https://github.com/icanbwell/bwell-sdk-swift-package
+  install: add https://github.com/icanbwell/bwell-sdk-swift-package as a Swift Package dependency
+  official: true
+  docs: https://developer.bwell.com/docs/swiftsdk-overview
+- language: python
+  registry: pypi
+  name: helix.fhir.client.sdk
+  url: https://pypi.org/project/helix.fhir.client.sdk/
+  install: pip install helix.fhir.client.sdk
+  version: 4.2.29
+  official: true
+  source: https://github.com/icanbwell/helix.fhir.client.sdk
+  note: FHIR client SDK used for Databricks/Spark data access against the b.well FHIR Server
+- language: python
+  registry: pypi
+  name: sparkpipelineframework
+  url: https://pypi.org/project/sparkpipelineframework/
+  install: pip install sparkpipelineframework
+  version: 4.0.24
+  official: true
+  source: https://github.com/icanbwell/SparkPipelineFramework
+- language: python
+  registry: pypi
+  name: sparkautomapper
+  url: https://pypi.org/project/sparkautomapper/
+  install: pip install sparkautomapper
+  official: true
+  source: https://github.com/icanbwell/SparkAutoMapper
+- language: python
+  registry: pypi
+  name: sparkautomapper.fhir
+  url: https://pypi.org/project/sparkautomapper.fhir/
+  install: pip install sparkautomapper.fhir
+  official: true
+- language: python
+  registry: pypi
+  name: sparkfhirschemas
+  url: https://pypi.org/project/sparkfhirschemas/
+  install: pip install sparkfhirschemas
+  official: true
+- language: python
+  registry: pypi
+  name: helixtelemetry
+  url: https://pypi.org/project/helixtelemetry/
+  install: pip install helixtelemetry
+  official: true
+registries_probed:
+- registry: npm
+  result: 1 first-party package found (@icanbwell scope)
+- registry: pypi
+  result: 6 first-party packages found
+- registry: maven-central
+  result: 0 results for `bwell` and `g:com.icanbwell`
+- registry: nuget
+  result: not probed — b.well ships no .NET SDK
+- registry: rubygems
+  result: not probed — b.well ships no Ruby SDK

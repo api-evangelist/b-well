@@ -1,0 +1,61 @@
+generated: '2026-08-06'
+method: searched
+source: developer.bwell.com docs
+notes: >-
+  b.well ships prebuilt, embeddable end-user surfaces alongside its SDKs — these are
+  UI you drop into your own app, distinct from the server-side and client libraries
+  catalogued in packages/.
+families:
+- name: b.well Embeddable
+  description: >-
+    Prebuilt b.well experiences embedded directly into a partner's own application,
+    so the partner does not have to build the health-record UI themselves.
+  docs: https://developer.bwell.com/docs/embeddable-overview
+  integrations:
+  - platform: web
+    docs: https://developer.bwell.com/docs/embeddable-web-integration
+  - platform: react-native
+    docs: https://developer.bwell.com/docs/embeddable-react-native-integration
+- name: bailey (Health AI Assistant)
+  description: >-
+    A ready-to-deploy Health AI Assistant b.well describes as the first-ever SDK for
+    health AI assistants. Offered as an embeddable UI as well as programmatic
+    completion APIs.
+  docs: https://developer.bwell.com/docs/bailey-sdk
+  surfaces:
+  - name: bailey Embeddable UI
+    docs: https://developer.bwell.com/docs/bailey-embeddable-ui
+    type: embedded assistant UI for mobile apps
+  - name: bailey Chat Completions API
+    docs: https://developer.bwell.com/docs/bailey-chat-completions-api
+    type: API
+  - name: bailey Responses API
+    docs: https://developer.bwell.com/docs/bailey-responses-api
+    type: API
+- name: FHIR Server Web UI
+  description: >-
+    A hosted, view-only web interface over the b.well FHIR Server for testing and
+    troubleshooting, accessed with a b.well user account. Open source at
+    github.com/icanbwell/fhir-server-ui.
+  docs: https://developer.bwell.com/docs/fhir-server-web-ui
+  source: https://github.com/icanbwell/fhir-server-ui
+  type: hosted console
+- name: GraphQL Playground
+  description: >-
+    Interactive documentation and testing environment for the Application APIs'
+    GraphQL operations — browse queries and mutations, explore the schema, and test
+    queries in real time.
+  url: https://icanbwell.github.io/graphql-doc-site/
+  type: hosted console
+example_apps:
+- name: bwell-sdk-example
+  url: https://github.com/icanbwell/bwell-sdk-example
+  platform: Swift / Kotlin example application
+- name: reactnativeExampleEmbeddable
+  url: https://github.com/icanbwell/reactnativeExampleEmbeddable
+  platform: React Native Embeddable example
+- docs: https://developer.bwell.com/docs/sample-applications
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://developer.bwell.com/llms.txt
+  http_status: 200

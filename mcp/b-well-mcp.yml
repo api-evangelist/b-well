@@ -1,0 +1,192 @@
+generated: '2026-08-06'
+method: searched
+status: published
+source: https://developer.bwell.com/docs/aisdk-overview
+docs:
+  overview: https://developer.bwell.com/docs/aisdk-overview
+  tools_catalog: https://developer.bwell.com/docs/mcp-tools-agents
+  clients:
+    openai: https://developer.bwell.com/docs/mcp-openai
+    anthropic: https://developer.bwell.com/docs/mcp-anthropic
+    google: https://developer.bwell.com/docs/mcp-google
+server:
+  name: bwell-mcp-fhir-agent
+  transport: http
+  url: https://api.client-sandbox.icanbwell.com/mcp/
+  url_template: https://api.{ENVIRONMENT}.icanbwell.com/mcp/
+  environments:
+  - client-sandbox
+  - production (endpoint provided during onboarding)
+  authentication:
+    scheme: bearer
+    description: >-
+      Every MCP request runs in an authorized end-user context. The bearer token is a
+      b.well user access token obtained through OAuth 2.0 token exchange (see
+      https://developer.bwell.com/docs/oauth-token-exchange). Most tools resolve
+      person_id from the `clientFhirPersonId` claim on that token when it is not
+      passed explicitly.
+introspection:
+  tools_list_probed: true
+  tools_list_status: 401
+  tools_list_note: >-
+    POST tools/list against https://api.client-sandbox.icanbwell.com/mcp/ returns
+    401 Unauthorized with no OAuth challenge body — the live inputSchema set requires
+    an authenticated end-user token. The tool list below is transcribed from b.well's
+    own published Agents Catalog, where each tool has a dedicated documentation page
+    naming the exact tool identifier, its required and optional parameters, and its
+    return shape. Parameter detail is therefore documentation-grade, not
+    introspection-grade.
+tools:
+- name: validate_insurance_coverage
+  category: insurance
+  description: Checks whether a patient has active insurance coverage and identifies which
+    benefit plan(s) apply, combining FHIR Coverage resources with policy-document availability.
+  docs: https://developer.bwell.com/docs/validate-insurance-coverage
+  parameters: [person_id]
+- name: list_available_insurance_docs
+  category: insurance
+  description: Lists the insurance policy documents available for the patient.
+  docs: https://developer.bwell.com/docs/list-available-insurance-documents
+- name: explore_policy_context
+  category: insurance
+  description: Explores the context of an insurance policy document.
+  docs: https://developer.bwell.com/docs/explore-policy-context
+- name: search_insurance_policy
+  category: insurance
+  description: Searches within a patient's insurance policy documents.
+  docs: https://developer.bwell.com/docs/search-insurance-policy
+- name: get_demographics
+  category: health-records
+  description: Retrieves the user's demographic information from their FHIR Person record,
+    with privacy labels and LLM behavior rules attached to sensitive fields.
+  docs: https://developer.bwell.com/docs/get-demographics
+  parameters: [person_id, debug]
+- name: get_health_scores
+  category: health-records
+  description: Retrieves the patient's health scores.
+  docs: https://developer.bwell.com/docs/get-health-scores
+- name: get_fhir_record
+  category: health-records
+  description: Retrieves patient medical records for a specific FHIR resource type
+    (Immunization, Condition, MedicationRequest, and others).
+  docs: https://developer.bwell.com/docs/get-fhir-record-mcp-toolagent
+  parameters: [resource, person_id, active_only, start_date, end_date, maximum_tokens,
+    text_filters, count]
+- name: get_patient_summary
+  category: health-records
+  description: Retrieves a summary of the patient's record.
+  docs: https://developer.bwell.com/docs/get-patient-summary
+- name: get_vitals
+  category: health-records
+  description: Retrieves the patient's vital signs.
+  docs: https://developer.bwell.com/docs/get-vitals
+- name: get_wearables_summary
+  category: health-records
+  description: Retrieves a summary of the patient's wearable-device data.
+  docs: https://developer.bwell.com/docs/get-wearables
+- name: get_labs
+  category: health-records
+  description: Retrieves laboratory results from FHIR Observation resources, with named
+    lab-test filtering and table/timeline/statistics/csv/markdown output formats.
+  docs: https://developer.bwell.com/docs/get-labs
+  parameters: [person_id, labs, start_date, end_date, count, output_formats, ignore_cache,
+    debug]
+- name: search_clinical_notes
+  category: health-records
+  description: Searches the patient's clinical notes (FHIR DocumentReference).
+  docs: https://developer.bwell.com/docs/search-clinical-notes-mcp-toolagent
+- name: provider_search
+  category: providers-connections
+  description: Read-only discovery of healthcare providers, practices, insurance entities,
+    labs and pharmacies in the b.well provider directory, filtered by geography and specialty.
+  docs: https://developer.bwell.com/docs/provider-search
+  parameters: [search_text, lat, lon, distance, include_populated_proa_only, include_inactive,
+    page_size, page_number, insurance_name, zipcode]
+- name: search_connections
+  category: providers-connections
+  description: Searches the user's existing and available data-source connections.
+  docs: https://developer.bwell.com/docs/search-connections-1
+- name: connect_to_datasource
+  category: providers-connections
+  description: Establishes a data connection to a health data source on the user's behalf.
+  docs: https://developer.bwell.com/docs/connect-to-data-source
+- name: get_scheduling_slots
+  category: scheduling
+  description: Retrieves available appointment slots for a provider, department and visit type.
+  docs: https://developer.bwell.com/docs/get-scheduling-slots
+- name: schedule_appointment
+  category: scheduling
+  description: Books an appointment by creating a FHIR Appointment resource from a slot
+    selected via get_scheduling_slots.
+  docs: https://developer.bwell.com/docs/schedule-appointment
+  parameters: [start, minutes_duration, visit_type_id, provider_id, department_id, comment,
+    timezone_title, person_id, debug]
+- name: get_appointments
+  category: scheduling
+  description: Retrieves the patient's appointments.
+  docs: https://developer.bwell.com/docs/get-appointments
+- name: get_upcoming_appointments
+  category: scheduling
+  description: Retrieves the patient's upcoming appointments.
+  docs: https://developer.bwell.com/docs/get-upcoming-appointments
+- name: get_appointment_detail
+  category: scheduling
+  description: Retrieves the detail of a single appointment.
+  docs: https://developer.bwell.com/docs/get-appointment-detail
+- name: reschedule_appointment
+  category: scheduling
+  description: Reschedules an existing appointment.
+  docs: https://developer.bwell.com/docs/reschedule-appointment
+- name: cancel_appointment
+  category: scheduling
+  description: Cancels an existing appointment.
+  docs: https://developer.bwell.com/docs/cancel-appointment
+- name: get_cancel_reasons
+  category: scheduling
+  description: Retrieves the valid cancellation reasons for an appointment.
+  docs: https://developer.bwell.com/docs/get-cancel-reasons
+- name: get_visit_types
+  category: scheduling
+  description: Retrieves the visit types a provider or department offers.
+  docs: https://developer.bwell.com/docs/get-visit-types
+- name: register_patient
+  category: scheduling
+  description: Registers the patient with a scheduling-enabled organization.
+  docs: https://developer.bwell.com/docs/register-patient-for-scheduling
+- name: find_pharmacy_stores
+  category: pharmacy
+  description: Finds pharmacy store locations.
+  docs: https://developer.bwell.com/docs/find-pharmacy-stores
+- name: get_pharmacy_hours
+  category: pharmacy
+  description: Retrieves the operating hours of a pharmacy store.
+  docs: https://developer.bwell.com/docs/get-pharmacy-hours
+- name: check_transfer_eligibility
+  category: pharmacy
+  description: Checks whether a prescription is eligible for transfer to another pharmacy.
+  docs: https://developer.bwell.com/docs/check-transfer-eligibility
+- name: transfer_prescription
+  category: pharmacy
+  description: Initiates a prescription transfer to a pharmacy, given patient, insurance,
+    pharmacy and prescription detail plus pickup preferences.
+  docs: https://developer.bwell.com/docs/transfer-prescription
+- name: convert_zipcode_to_coordinates
+  category: utility
+  description: Converts a 5-digit US ZIP code to latitude/longitude coordinates for
+    location-based searches.
+  docs: https://developer.bwell.com/docs/convert-zipcode-to-gps-latlon
+  parameters: [zipcode]
+- name: get_current_date
+  category: utility
+  description: Returns the current date/time in a chosen format (date, datetime, iso, rfc3339).
+  docs: https://developer.bwell.com/docs/get-current-datetime
+  parameters: [date_format]
+coverage:
+  tools_documented: 31
+  categories: [insurance, health-records, providers-connections, scheduling, pharmacy, utility]
+x-evidence:
+  fetched: '2026-08-06'
+  llms_txt: https://developer.bwell.com/llms.txt
+  llms_txt_status: 200
+  tools_list_url: https://api.client-sandbox.icanbwell.com/mcp/
+  tools_list_status: 401

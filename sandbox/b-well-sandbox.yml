@@ -1,0 +1,63 @@
+generated: '2026-08-06'
+method: searched
+source: https://developer.bwell.com/docs/testing-considerations
+environments:
+- name: client-sandbox
+  description: A dedicated non-production testing environment that mirrors production
+    functionality.
+  base_url: https://api.client-sandbox.icanbwell.com/v1
+  graphql: https://api.client-sandbox.icanbwell.com/v1/graphql
+  identity: https://api.client-sandbox.icanbwell.com/v1/identity/oauth/token
+  mcp: https://api.client-sandbox.icanbwell.com/mcp/
+  fhir: https://fhir.client-sandbox.icanbwell.com
+  user_data_ops: https://user-data-ops.client-sandbox.icanbwell.com
+- name: production
+  description: Endpoints are provided during onboarding.
+  fhir: https://fhir.icanbwell.com
+  user_data_ops: https://user-data-ops.prod.icanbwell.com
+access:
+  self_service: false
+  detail: >-
+    "Testing environment access and test users are provided by b.well as part of
+    active sales engagements or for existing customers. There is no self-service
+    portal — access credentials and configuration details are provisioned directly by
+    the b.well team when your testing environment is set up." Quoted verbatim from the
+    Testing Considerations guide.
+  fixable_by: b.well
+test_data:
+  synthetic_test_users:
+    published_values: none
+    detail: >-
+      b.well provides synthetic test users tailored to each customer's data
+      configuration — clinical data (labs, medications, conditions), payer data
+      (claims, coverage), or both. No test identifiers, test person IDs or magic
+      values are published; they are issued per engagement.
+  test_cards: not applicable
+  test_clocks: not published
+proa_server:
+  name: b.well Sandbox PROA Server
+  description: >-
+    A simulated patient-access server, part of the health.network product suite, that
+    stands in for external health-system connections in a controlled environment.
+  capabilities:
+  - Simulate external health system connections without touching production systems
+  - Manage test data updates to simulate providers updating patient records
+  - Control token expirations — accelerate them to test refresh handling, or extend
+    them to avoid interruption during long test sessions
+  rationale: >-
+    Production health systems cannot be used for testing under HIPAA, and third-party
+    vendor sandboxes have limited availability and control.
+third_party_sandboxes:
+  detail: b.well also brokers access to selected third-party vendor sandboxes (EHR
+    systems, health plans) for additional testing scenarios.
+related_testing_docs:
+- url: https://developer.bwell.com/docs/data-connection-request-testing
+  scope: testing the Data Connection Request workflow in sandbox
+- url: https://developer.bwell.com/docs/testing-and-validation
+  scope: FHIR SDK testing and validation
+- url: https://developer.bwell.com/docs/sample-applications
+  scope: sample applications
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://developer.bwell.com/docs/testing-considerations
+  http_status: 200

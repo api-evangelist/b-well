@@ -1,0 +1,130 @@
+generated: '2026-08-06'
+method: derived
+source: mcp/b-well-mcp.yml + openapi/*.json + developer.bwell.com docs
+summary: >-
+  b.well's three machine surfaces barely overlap. The MCP server carries 31 healthcare
+  agents; the two public OpenAPI documents carry three operations between them, and
+  neither covers a single MCP capability. Everything the MCP server does is backed by
+  the federated GraphQL gateway and the FHIR R4 server, not by the published REST specs.
+  This is a real surface divergence, not a documentation gap — recorded here rather
+  than papered over. Confidence on every row is therefore low-to-medium: the live MCP
+  tools/list is auth-gated (401) and GraphQL introspection is not anonymously
+  available, so bindings are mapped by the semantics b.well documents, not by matching
+  a schema on both ends.
+surfaces:
+  openapi:
+  - file: openapi/b-well-user-data-operations-openapi.json
+    title: bwell User Data Operations
+    version: 1.0.11
+    operations: 2
+    gated: false
+  - file: openapi/b-well-client-webhook-api-openapi.json
+    title: Client Webhook API
+    version: 1.0.0
+    operations: 1
+    gated: false
+    note: client-implemented callback contract, not a b.well-hosted endpoint
+  graphql:
+    endpoint: https://api.client-sandbox.icanbwell.com/v1/graphql
+    introspection: gated
+    introspection_status: 500
+    note: >-
+      POST of the standard introspection query returns HTTP 500
+      {"errors":[{"message":"internal server error"}]} without a bearer token. b.well
+      publishes a rendered schema explorer at
+      https://icanbwell.github.io/graphql-doc-site/ but does not serve an SDL or
+      schema.json from it (probed: schema.graphql, schema.json, graphql-schema.json —
+      all 404).
+  mcp:
+    url: https://api.client-sandbox.icanbwell.com/mcp/
+    tools_list: gated
+    tools_list_status: 401
+  fhir:
+    endpoint: https://fhir.icanbwell.com
+    capability_statement: /4_0_0/metadata
+    capability_statement_status: 401
+    note: the FHIR CapabilityStatement is the closest thing to a machine contract for
+      the health-record tools, and it requires authentication
+crosswalk: []
+mcp_only:
+- tool: validate_insurance_coverage
+  reason: backed by FHIR Coverage resources via the FHIR server; no public REST operation
+- tool: list_available_insurance_docs
+  reason: insurance document store; no public REST operation
+- tool: explore_policy_context
+  reason: document-intelligence composite; no public REST operation
+- tool: search_insurance_policy
+  reason: document-intelligence composite; no public REST operation
+- tool: get_demographics
+  reason: reads FHIR Person; exposed via GraphQL and the FHIR server, not the public REST specs
+- tool: get_health_scores
+  reason: b.well-computed score, exposed through the SDKs and GraphQL only
+- tool: get_fhir_record
+  reason: FHIR R4 resource read on the FHIR server; not in either public OpenAPI
+- tool: get_patient_summary
+  reason: International Patient Summary generation on the FHIR server ($summary/IPS)
+- tool: get_vitals
+  reason: FHIR Observation query; GraphQL/FHIR-backed
+- tool: get_wearables_summary
+  reason: device-metrics aggregation; SDK/GraphQL-backed
+- tool: get_labs
+  reason: FHIR Observation query with server-side formatting; no public REST operation
+- tool: search_clinical_notes
+  reason: FHIR DocumentReference search; no public REST operation
+- tool: provider_search
+  reason: b.well provider directory; GraphQL SearchHealthResources-backed
+- tool: search_connections
+  reason: connection management; GraphQL-backed
+- tool: connect_to_datasource
+  reason: connection creation with OAuth handoff; GraphQL-backed
+- tool: get_scheduling_slots
+  reason: scheduling gateway; GraphQL-backed
+- tool: schedule_appointment
+  reason: creates a FHIR Appointment; GraphQL-backed
+- tool: get_appointments
+  reason: scheduling gateway; GraphQL-backed
+- tool: get_upcoming_appointments
+  reason: scheduling gateway; GraphQL-backed
+- tool: get_appointment_detail
+  reason: scheduling gateway; GraphQL-backed
+- tool: reschedule_appointment
+  reason: scheduling gateway; GraphQL-backed
+- tool: cancel_appointment
+  reason: scheduling gateway; GraphQL-backed
+- tool: get_cancel_reasons
+  reason: scheduling gateway; GraphQL-backed
+- tool: get_visit_types
+  reason: scheduling gateway; GraphQL-backed
+- tool: register_patient
+  reason: scheduling gateway; GraphQL-backed
+- tool: find_pharmacy_stores
+  reason: pharmacy partner integration; no public REST operation
+- tool: get_pharmacy_hours
+  reason: pharmacy partner integration; no public REST operation
+- tool: check_transfer_eligibility
+  reason: pharmacy partner integration; no public REST operation
+- tool: transfer_prescription
+  reason: pharmacy partner integration; no public REST operation
+- tool: convert_zipcode_to_coordinates
+  reason: server-side utility with no API equivalent
+- tool: get_current_date
+  reason: server-side utility with no API equivalent
+rest_only:
+- capability: personal data rights
+  operations:
+  - 'POST /users/{id}/data-exports (bwell User Data Operations)'
+  - 'DELETE /users/{id} (bwell User Data Operations)'
+  note: >-
+    Data export and account deletion are deliberately not agent-callable. Both are
+    irreversible, HMAC-signed, system-context operations initiated by the client
+    application, not by an end-user LLM session.
+- capability: asynchronous event delivery
+  operations:
+  - 'POST /webhook (Client Webhook API)'
+  note: implemented by the client, called by b.well
+coverage:
+  tools_named: 31
+  tools_bound_to_rest: 0
+  mcp_only: 31
+  rest_operations_total: 3
+  rest_operations_with_a_tool: 0

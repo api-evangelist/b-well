@@ -1,0 +1,132 @@
+generated: '2026-08-06'
+method: searched
+source: developer.bwell.com docs + openapi/*.json + well-known/*
+standards:
+- id: fhir-r4
+  conforms: true
+  evidence: >-
+    b.well operates a FHIR R4 server (the open-source Helix FHIR Server,
+    github.com/icanbwell/fhir-server) supporting standard FHIR REST operations, search
+    parameters, paging and streaming. The SDK object model is FHIR-shaped throughout
+    (Person, Patient, Coverage, Observation, Condition, MedicationRequest, Appointment,
+    DocumentReference, ExplanationOfBenefit, CarePlan, CareTeam, Specimen,
+    ServiceRequest, VerificationResult).
+  docs: https://developer.bwell.com/docs/fhirserver-overview
+- id: fhir-everything-operation
+  conforms: true
+  evidence: '$everything is documented for bulk retrieval of a complete patient record.'
+  docs: https://developer.bwell.com/docs/fhirserver-everything
+- id: fhir-ips
+  conforms: true
+  evidence: International Patient Summary generation is a documented FHIR Server capability,
+    with a dedicated open-source implementation at github.com/icanbwell/fhir-patient-summary.
+  docs: https://developer.bwell.com/docs/fhirserver-ips
+- id: fhir-messaging
+  conforms: true
+  evidence: The Client Webhook API is "heavily based on the FHIR messaging specification"
+    and delivers a Bundle of type message with a MessageHeader.
+  source: openapi/b-well-client-webhook-api-openapi.json
+- id: fhir-operationoutcome
+  conforms: true
+  evidence: SDK, GraphQL and FHIR errors are returned as FHIR OperationOutcome resources
+    with issue severity and issue-type codes.
+  docs: https://developer.bwell.com/docs/error-codes
+- id: smart-on-fhir
+  conforms: partial
+  evidence: >-
+    Both FHIR hosts serve /.well-known/smart-configuration (HTTP 200) with authorization,
+    token, revocation, userinfo and JWKS endpoints. The document advertises only the
+    identity scopes (openid, profile, email, phone) — no SMART clinical scopes
+    (patient/*.read) and no `capabilities` array, so it is a partial SMART App Launch
+    discovery document.
+  source: well-known/b-well-smart-configuration.json
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.0 is used across all APIs; client credentials (RFC 6749 §4.4) for
+    system auth and token exchange for end-user auth.
+  docs: https://developer.bwell.com/docs/auth-overview
+- id: oauth2-token-exchange
+  conforms: true
+  evidence: End-user authentication exchanges the integrator's OIDC ID token for a
+    b.well access token.
+  docs: https://developer.bwell.com/docs/oauth-token-exchange
+- id: oidc
+  conforms: true
+  evidence: OpenID Connect ID tokens are the input to token exchange; the SMART
+    configuration advertises RS256 ID token signing and a userinfo endpoint.
+- id: oauth2-dynamic-client-registration
+  conforms: claimed
+  evidence: b.well's public materials describe automatic app onboarding through OAuth
+    Dynamic Client Registration; no /register endpoint was anonymously reachable to
+    verify (every /.well-known/* path on the API host returns 401).
+- id: graphql
+  conforms: true
+  evidence: A federated GraphQL gateway is the primary Application API interface, with
+    a published schema explorer.
+  docs: https://icanbwell.github.io/graphql-doc-site/
+- id: model-context-protocol
+  conforms: true
+  evidence: b.well hosts an MCP server at https://api.{ENVIRONMENT}.icanbwell.com/mcp/
+    with documented client configuration for OpenAI, Anthropic and Google.
+  docs: https://developer.bwell.com/docs/aisdk-overview
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: /.well-known/security.txt served from icanbwell.com and bwell.com with
+    Contact, Expires, Preferred-Languages and Canonical fields.
+  source: well-known/b-well-security.txt
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    REST errors are a plain JSON object with a single "message" string; no
+    application/problem+json media type appears in either published OpenAPI.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no deprecation or sunset policy is published; see lifecycle/b-well-lifecycle.yml
+- id: hipaa
+  conforms: claimed
+  evidence: >-
+    The Application APIs documentation states that end-user auth context ensures
+    "HIPAA-compliant data handling", and the Testing Considerations guide cites HIPAA
+    as the reason production health systems cannot be used for testing. This is a
+    documentation claim; b.well publishes no trust centre, audit report or named
+    certification (SOC 2, HITRUST, ISO 27001) that could be verified — probes of
+    trust.icanbwell.com, security.icanbwell.com and /trust, /security, /compliance on
+    icanbwell.com all failed to resolve or returned 404.
+- id: cms-interoperability-patient-access
+  conforms: claimed
+  evidence: >-
+    b.well publishes a CMS-Aligned Network specification site
+    (https://insights.icanbwell.com/cms_network, HTTP 200; source at
+    github.com/icanbwell/cms-ns) and describes Patient Access API connectivity to
+    2.2M+ providers and 300+ health plans. Alignment is self-asserted.
+- id: tefca-qhin
+  conforms: claimed
+  evidence: b.well describes network data connections through HIEs, HINs and TEFCA/QHINs.
+    Participation is self-asserted in marketing material, not evidenced by a machine-readable
+    artifact.
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key or replay contract is documented; see conventions/b-well-conventions.yml
+- id: rate-limit-headers
+  conforms: false
+  evidence: no rate limits or rate-limit response headers documented
+compliance_program:
+  published: false
+  detail: >-
+    No trust centre, no named certification, no audit report. Deliberately NOT wired as
+    a `Compliance` pointer — b.well makes HIPAA and CMS-alignment claims in prose but
+    publishes nothing an evaluator can verify.
+  fixable_by: b.well
+x-evidence:
+  fetched: '2026-08-06'
+  evidence:
+  - url: https://fhir.icanbwell.com/.well-known/smart-configuration
+    status: 200
+  - url: https://www.icanbwell.com/.well-known/security.txt
+    status: 200
+  - url: https://insights.icanbwell.com/cms_network
+    status: 200
+  - url: https://trust.icanbwell.com
+    status: 0
+  - url: https://www.icanbwell.com/trust
+    status: 404

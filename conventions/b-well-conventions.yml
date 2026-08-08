@@ -1,0 +1,103 @@
+generated: '2026-08-06'
+method: searched
+source: developer.bwell.com docs + openapi/*.json + observed response headers
+authentication:
+  style: OAuth 2.0 bearer, plus HMAC-SHA512 request signing on the User Data Operations API
+  end_user: OAuth 2.0 Token Exchange with OIDC
+  system: OAuth 2.0 Client Credentials
+  header: 'Authorization: Bearer {access_token}'
+  see: authentication/b-well-authentication.yml
+idempotency:
+  supported: unknown
+  header: null
+  detail: >-
+    No idempotency contract is documented. The word "idempotent" does not appear
+    anywhere in developer.bwell.com's llms.txt index, no Idempotency-Key parameter
+    appears in either published OpenAPI, and neither of the two write operations
+    (data export, account deletion) describes replay behaviour — both return 202
+    Accepted, so a retried request may enqueue a second asynchronous job. The
+    HMAC x-bwell-date header provides replay protection, which is a signing
+    concern, not request idempotency.
+  fixable_by: b.well
+pagination:
+  style: page-number
+  parameters:
+  - page
+  - pageSize
+  mcp_parameters:
+  - page_number   # 0-based, provider_search
+  - page_size     # default 10, provider_search
+  response_shape: >-
+    SDK responses use a PaginatedBundle / ResourceBundle wrapper carrying paging
+    information alongside the entries.
+  fhir:
+    style: FHIR Bundle link relations, with an explicit paging-vs-streaming choice
+      for large result sets
+    docs: https://developer.bwell.com/docs/paging-vs-streaming
+  errors: an invalid page or pageSize yields an OperationOutcome issue of type VALUE
+  docs: https://developer.bwell.com/reference/sdkpaginginfo
+filtering_and_selection:
+  graphql: >-
+    The Application APIs use a federated GraphQL gateway as the primary interface, so
+    field selection is native — clients request exactly the fields they need rather
+    than using sparse-fieldset query parameters.
+  request_objects: >-
+    The SDKs express queries as typed Request objects (HealthDataRequestInput,
+    SearchHealthResourcesRequestInput, and siblings) carrying filters, date ranges,
+    codings, sort order and paging.
+  date_filtering:
+    parameters: [start_date, end_date]
+    format: 'YYYY-MM-DD, inclusive bounds'
+    docs: https://developer.bwell.com/docs/filtering-base-resources-by-date
+  coding_filters:
+    detail: health data requests accept FHIR codings (system/code/display) as filters
+    docs: https://developer.bwell.com/docs/codings-in-health-data-request-objects
+  sorting:
+    parameters: [OrderBy, SortField, SortOrder, FieldSortOrder]
+request_tracing:
+  header: x-request-id
+  observed: true
+  detail: >-
+    The GraphQL gateway returns an `x-request-id` response header (observed on a live
+    probe of https://api.client-sandbox.icanbwell.com/v1/graphql). The MCP
+    get_demographics tool also returns a `request_id` inside its debug object when
+    called with debug=true. b.well does not document either as a supported
+    correlation contract.
+  documented: false
+versioning:
+  style: uri-path
+  current: v1
+  see: lifecycle/b-well-lifecycle.yml
+error_envelope:
+  rest: '{ "message": "<string>" }'
+  sdk_graphql_fhir: FHIR R4 OperationOutcome with issue[].severity / issue[].code / issue[].details
+  see: errors/b-well-problem-types.yml
+rate_limiting:
+  documented: false
+  headers: null
+  detail: >-
+    No rate limits, quotas or rate-limit response headers are documented anywhere in
+    the developer portal, and none were observable anonymously because every API host
+    returns 401 before routing.
+  fixable_by: b.well
+async_operations:
+  pattern: 202 Accepted + webhook callback
+  detail: >-
+    Long-running operations (user data export, user account deletion, network record
+    retrieval) return 202 Accepted immediately and report completion asynchronously to
+    the client's registered webhook endpoint.
+  see: asyncapi/b-well-webhooks.yml
+consent:
+  detail: >-
+    b.well is a consumer-mediated network, so consent is a first-class request
+    concern, not a policy footnote. Consent records are created and read through the
+    SDKs (CreateConsentRequest, GetConsentsRequestInput) with a CategoryCode
+    vocabulary (for example PROA_ATTESTATION, direct:import:records) and a
+    ConsentStatus / ConsentProvisionType state model.
+  docs: https://developer.bwell.com/docs/consents-typescript-sdk
+cross_links:
+  errors: errors/b-well-problem-types.yml
+  lifecycle: lifecycle/b-well-lifecycle.yml
+  authentication: authentication/b-well-authentication.yml
+  scopes: scopes/b-well-scopes.yml
+  sandbox: sandbox/b-well-sandbox.yml

@@ -42,5 +42,25 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-b.well is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+b.well Connected Health is a digital health platform that unifies a person's fragmented
+medical, pharmacy, claims, wearable and lab data into a single FHIR-native longitudinal
+health record, then licenses that record to health systems, payers, employers and retail
+health brands who embed it in their own applications.
+
+- Website: https://www.icanbwell.com/
+- Developer portal: https://developer.bwell.com/
+- GitHub: https://github.com/icanbwell
+- Status: https://status.bwell.com
+
+## Public API surface profiled here
+
+| Surface | Where |
+| --- | --- |
+| Application APIs (federated GraphQL + REST) | `https://api.client-sandbox.icanbwell.com/v1` |
+| User Data Operations API (OpenAPI 3.0.3) | `openapi/b-well-user-data-operations-openapi.json` |
+| Client Webhook API (OpenAPI 3.0.3, FHIR messaging) | `openapi/b-well-client-webhook-api-openapi.json` |
+| FHIR R4 Server (open-source Helix FHIR Server) | `https://fhir.icanbwell.com` |
+| Health SDK for AI — hosted MCP server, 31 agents | `mcp/b-well-mcp.yml` |
+
+Both OpenAPI documents were extracted verbatim from the payload of b.well's own
+ReadMe-hosted reference pages; b.well does not serve either from a downloadable spec URL.

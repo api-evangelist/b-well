@@ -1,0 +1,54 @@
+generated: '2026-08-06'
+method: searched
+source: https://fhir.icanbwell.com/.well-known/smart-configuration
+docs: https://developer.bwell.com/docs/system-auth
+notes: >-
+  b.well documents scope-based authorization but does not publish a scope reference
+  page. Client IDs are "assigned specific scopes during onboarding based on your
+  integration requirements", so the full scope vocabulary is negotiated per customer
+  and is not publicly enumerable. The scopes recorded below are the ones actually
+  advertised anonymously in the SMART-on-FHIR configuration documents served by the
+  production and sandbox FHIR hosts — the identity scopes of the underlying AWS
+  Cognito authorization server. No SMART clinical scopes (patient/*.read and the
+  like) are advertised there.
+schemes:
+- name: SMART on FHIR / OAuth 2.0 (production)
+  source: https://fhir.icanbwell.com/.well-known/smart-configuration
+  file: well-known/b-well-smart-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/authorize
+    tokenUrl: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/token
+  - flow: clientCredentials
+    tokenUrl: https://fhir-bwell.auth.us-east-1.amazoncognito.com/oauth2/token
+- name: SMART on FHIR / OAuth 2.0 (client-sandbox)
+  source: https://fhir.client-sandbox.icanbwell.com/.well-known/smart-configuration
+  file: well-known/b-well-smart-configuration-sandbox.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://client-sandbox-fhir.auth.us-east-1.amazoncognito.com/oauth2/authorize
+    tokenUrl: https://client-sandbox-fhir.auth.us-east-1.amazoncognito.com/oauth2/token
+scopes:
+- scope: openid
+  description: OpenID Connect — issue an ID token identifying the authenticated subject.
+  flows: [authorizationCode]
+  sources: [well-known/b-well-smart-configuration.json, well-known/b-well-smart-configuration-sandbox.json]
+- scope: profile
+  description: Access to the subject's basic profile claims.
+  flows: [authorizationCode]
+  sources: [well-known/b-well-smart-configuration.json, well-known/b-well-smart-configuration-sandbox.json]
+- scope: email
+  description: Access to the subject's email address claim.
+  flows: [authorizationCode]
+  sources: [well-known/b-well-smart-configuration.json, well-known/b-well-smart-configuration-sandbox.json]
+- scope: phone
+  description: Access to the subject's phone number claim.
+  flows: [authorizationCode]
+  sources: [well-known/b-well-smart-configuration.json, well-known/b-well-smart-configuration-sandbox.json]
+gaps:
+- issue: no published scope reference
+  detail: >-
+    Neither developer.bwell.com nor the SMART configuration enumerates the data-access
+    scopes granted to a client credentials integration. An integrator cannot see, before
+    onboarding, which scopes exist or what each one unlocks.
+  fixable_by: b.well

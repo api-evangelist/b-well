@@ -1,0 +1,119 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/*.json + https://developer.bwell.com/docs/error-codes
+format: fhir-operationoutcome
+notes: >-
+  b.well has two distinct error surfaces. The published REST OpenAPI documents return
+  plain JSON `{ "message": "..." }` bodies with conventional HTTP status codes and do
+  NOT use RFC 9457 application/problem+json. Everything reached through the SDKs, the
+  GraphQL gateway and the FHIR server returns a FHIR R4 `OperationOutcome` resource
+  whose `issue[]` entries carry a severity, a FHIR issue-type code, and human-readable
+  details — that is b.well's real error model, and where an issue type is
+  BUSINESS_RULE the details carry a coding array with a machine code and display text.
+envelope:
+  rest:
+    media_type: application/json
+    shape: '{ "message": "<string>" }'
+    sources: [openapi/b-well-user-data-operations-openapi.json, openapi/b-well-client-webhook-api-openapi.json]
+  sdk_graphql_fhir:
+    media_type: application/fhir+json
+    resource: OperationOutcome
+    fields:
+    - issue[].severity   # WARNING | INFORMATION | ERROR | FATAL
+    - issue[].code       # FHIR issue-type: INVALID, VALUE, REQUIRED, NOT_FOUND, SECURITY, TIMEOUT, EXCEPTION, BUSINESS_RULE, NOT_SUPPORTED
+    - issue[].details    # human-readable explanation; for BUSINESS_RULE also a coding[] of {code, text}
+    value_sets:
+      severity: https://build.fhir.org/valueset-issue-severity.html
+      code: https://build.fhir.org/codesystem-issue-type.html
+    docs: https://developer.bwell.com/docs/error-codes
+problems:
+- status: 202
+  title: Request accepted
+  detail: Export or deletion request accepted and processing has started.
+  source_operation: openapi/b-well-user-data-operations-openapi.json#POST /users/{id}/data-exports
+- status: 401
+  title: Invalid HMAC signature
+  detail: The HMAC-SHA512 signature on the Authorization header did not validate.
+  source_operation: openapi/b-well-user-data-operations-openapi.json#POST /users/{id}/data-exports
+  remediation: Rebuild the canonical signed-header string (x-bwell-date;host;x-bwell-client-user-token;x-bwell-client-key;x-bwell-content-sha512)
+    and re-sign with the client secret.
+- status: 404
+  title: User not found
+  detail: No user exists for the client-specific identifier supplied in the path.
+  source_operation: openapi/b-well-user-data-operations-openapi.json#POST /users/{id}/data-exports
+  remediation: Confirm with b.well customer support which client-specific identifier
+    your integration should send.
+- status: 500
+  title: Server error
+  detail: Server error when processing the request.
+  source_operation: openapi/b-well-user-data-operations-openapi.json#POST /users/{id}/data-exports
+- status: 401
+  title: Invalid HMAC signature
+  detail: The HMAC signature on the inbound b.well webhook event did not validate.
+  source_operation: openapi/b-well-client-webhook-api-openapi.json#POST /webhook
+- status: 400
+  title: Invalid request payload
+  detail: The webhook event body did not match the expected schema.
+  source_operation: openapi/b-well-client-webhook-api-openapi.json#POST /webhook
+- status: 500
+  title: Internal server error
+  source_operation: openapi/b-well-client-webhook-api-openapi.json#POST /webhook
+sdk_issue_types:
+- code: REQUIRED
+  meaning: A required input was not supplied.
+  examples:
+  - ClientKey was not provided when initializing the SDK
+  - OrganizationId was not provided when creating a consent of category PROA_ATTESTATION
+  - Platform or name are not present in a registerDevice request
+- code: VALUE
+  meaning: A supplied value was invalid or unrecognized.
+  examples:
+  - Invalid Client Key / JWT could not be verified
+  - OrganizationId is invalid
+  - Platform name is invalid or not recognized
+  - Unsupported enum value, or an invalid pageSize/page, on searchProviders / searchConnections / getTasks
+  - Invalid connectionId passed to createConnection
+- code: SECURITY
+  meaning: Authentication or credential failure.
+  examples:
+  - Failure to authenticate the user
+  - The user entered invalid credentials while making a connection
+- code: EXCEPTION
+  meaning: An unexpected internal error, or use of the SDK before initialization/authentication.
+  examples:
+  - The SDK was not initialized prior to attempting authentication
+  - TokenRepository contains a null access token — authentication is required
+  - Consent search failed / consent could not be created
+  - An unexpected internal error has occurred (search, requestConnection, createConnection)
+- code: NOT_FOUND
+  meaning: The addressed resource does not exist.
+  examples:
+  - Client user/person ID was not found (getProfile)
+  - Task could not be found with the provided TaskId
+  - The connection passed in the request does not exist (getDataSource)
+  - User is not connected to the connection requested for disconnection
+- code: TIMEOUT
+  meaning: A downstream call exceeded its deadline.
+  examples:
+  - The request to the external connection service timed out (createConnection)
+- code: NOT_SUPPORTED
+  meaning: The requested mode or option is not supported.
+  examples:
+  - Task sort method is not recognized (getTasks)
+- code: INVALID
+  meaning: The request is structurally invalid.
+  examples:
+  - TaskId or task status is missing, or task status is not valid (updateTaskStatus)
+- code: BUSINESS_RULE
+  meaning: The request is well-formed but violates a business constraint; details.coding
+    carries a machine code and user-facing text.
+  codings:
+  - code: UNSUPPORTED_STATUS
+    text: The new task status provided is not supported.
+  - code: UNSUPPORTED_STATE_CHANGE
+    text: Transition from the current task status to the new task status is not supported
+      (for example COMPLETED to IN_PROGRESS).
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://developer.bwell.com/docs/error-codes
+  http_status: 200

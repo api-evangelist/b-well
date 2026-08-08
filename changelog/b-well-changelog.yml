@@ -1,0 +1,90 @@
+generated: '2026-08-06'
+method: searched
+source: https://developer.bwell.com/changelog
+scheme: semver
+current_version: '1.17.0'
+notes: >-
+  b.well runs several parallel dated changelogs: a versioned SDK changelog at
+  /changelog (the entries below), per-platform SDK changelogs for TypeScript, iOS and
+  the AI SDK, and a long-running "b.well Backend Updates" series of dated platform
+  notes stretching from October 2024 through 22 July 2026. Entries are consistently
+  additive — new enum values, new response fields, newly supported resource types —
+  and none in the recent window announces a removal or a breaking change.
+sources:
+- url: https://developer.bwell.com/changelog
+  scope: SDK changelog (versioned)
+- url: https://developer.bwell.com/docs/changelog-1
+  scope: TypeScript SDK
+- url: https://developer.bwell.com/docs/iphone-changelog
+  scope: Swift/iOS SDK
+- url: https://developer.bwell.com/docs/changelog-3
+  scope: Health SDK for AI
+- url: https://developer.bwell.com/docs/bwell-backend-updates
+  scope: b.well backend service updates (dated platform notes)
+- url: https://developer.bwell.com/docs/release-notes
+  scope: release notes
+entries:
+- version: 1.17.0
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1170
+  breaking: false
+  additions:
+  - 'getDataSource now returns integrationType — the integration type of the data source'
+  - 'getDataSource now returns consentPolicyUrl — URL of the partner''s consent policy'
+  - 'getDataSource now returns consentValidityDuration — ISO 8601 duration, e.g. P1Y'
+  - 'getDataSource now returns endpointStatus — current status of the data source endpoint'
+- version: 1.16.0
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1160
+  breaking: false
+  additions:
+  - 'New DIRECT_IMPORT_RECORDS value on the CategoryCode enum (FHIR code direct:import:records),
+    for consenting to direct record import'
+  highlights: existing CategoryCode values unchanged
+- version: 1.15.0
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1150
+  breaking: false
+  additions:
+  - 'getFhir() now supports DOCUMENT_REFERENCE as a resource type'
+- version: 1.14.0
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1140
+  breaking: false
+  additions:
+  - 'ConnectionCreateRequest gains an optional integrationType(IntegrationType) builder
+    method; when integrationType is DIRECT, username and password may be omitted'
+  - 'IntegrationType enum gains DIRECT and IAL2'
+- version: 1.13.0
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1130
+- version: 1.12.3
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1123
+- version: 1.12.2
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1122
+- version: 1.12.0
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1120
+- version: 1.11.2
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1112
+- version: 1.10.1
+  component: b.well Kotlin SDK
+  url: https://developer.bwell.com/changelog/bwell-sdk-v1101
+recent_backend_updates:
+- date: '2026-07-22'
+  url: https://developer.bwell.com/docs/bwell-backend-updates-71726
+- date: '2026-06-22'
+  url: https://developer.bwell.com/docs/bwell-backend-updates-62226
+- date: '2026-04-01'
+  url: https://developer.bwell.com/docs/bwell-backend-updates-4126
+- date: '2026-03-23'
+  url: https://developer.bwell.com/docs/bwell-backend-updates-32326
+- date: '2026-03-17'
+  url: https://developer.bwell.com/docs/bwell-backend-updates-31726
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://developer.bwell.com/llms.txt
+  http_status: 200

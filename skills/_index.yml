@@ -1,0 +1,48 @@
+generated: '2026-08-06'
+method: generated
+source: mcp/b-well-mcp.yml + openapi/*.json + developer.bwell.com docs
+notes: >-
+  b.well's two published OpenAPI documents carry three operations and declare no
+  operationIds, so REST-grounded skills would have almost nothing to bind to. The real
+  callable surface is the hosted MCP server's 31 documented healthcare agents, each with
+  a dedicated b.well documentation page naming the exact tool identifier and its
+  parameters. Every operation named in these skills was transcribed from those pages or
+  from the harvested specs — none is invented. The one REST-grounded skill deliberately
+  tells an agent NOT to run the flow itself.
+skills:
+- file: b-well-answer-an-insurance-question.md
+  name: Answer a patient's insurance question
+  api: mcp/b-well-mcp.yml
+  surface: MCP
+  operations: [validate_insurance_coverage, list_available_insurance_docs, explore_policy_context,
+    search_insurance_policy]
+- file: b-well-retrieve-health-records.md
+  name: Retrieve a patient's health records
+  api: mcp/b-well-mcp.yml
+  surface: MCP
+  operations: [get_demographics, get_patient_summary, get_labs, get_vitals, get_fhir_record,
+    search_clinical_notes, get_health_scores, get_wearables_summary]
+- file: b-well-book-an-appointment.md
+  name: Find a provider and book an appointment
+  api: mcp/b-well-mcp.yml
+  surface: MCP
+  operations: [convert_zipcode_to_coordinates, provider_search, register_patient, get_visit_types,
+    get_scheduling_slots, schedule_appointment, get_appointment_detail, get_upcoming_appointments,
+    reschedule_appointment, get_cancel_reasons, cancel_appointment]
+- file: b-well-connect-a-data-source.md
+  name: Connect a patient to a health data source
+  api: mcp/b-well-mcp.yml
+  surface: MCP + SDK
+  operations: [provider_search, search_connections, connect_to_datasource]
+- file: b-well-honor-a-data-rights-request.md
+  name: Honor a user's data export or deletion request
+  api: openapi/b-well-user-data-operations-openapi.json
+  surface: REST
+  operations: ['POST /users/{id}/data-exports', 'DELETE /users/{id}', 'POST /webhook']
+  agent_callable: false
+provider_published_skills:
+  found: false
+  probed:
+  - https://developer.bwell.com/llms.txt
+  detail: b.well publishes an llms.txt documentation index and MCP client configuration
+    guides, but no AGENTS.md or packaged agent skill files.

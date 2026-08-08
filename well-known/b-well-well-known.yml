@@ -1,0 +1,83 @@
+generated: '2026-08-06'
+method: searched
+source: live probes of every b.well web, docs, API and FHIR host
+notes: >-
+  Every /.well-known/* path on api.client-sandbox.icanbwell.com returns a blanket
+  401 Unauthorized (the gateway requires a bearer token before routing), so the
+  OAuth authorization-server and protected-resource metadata for the Application
+  APIs and the MCP server could not be read anonymously. The FHIR hosts do serve
+  an anonymous SMART-on-FHIR configuration document.
+hosts:
+- host: https://www.icanbwell.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: b-well-security.txt
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://www.bwell.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: identical document to www.icanbwell.com (Canonical points at icanbwell.com)
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://fhir.icanbwell.com
+  documents:
+  - path: /.well-known/smart-configuration
+    status: 200
+    file: b-well-smart-configuration.json
+    note: SMART App Launch discovery; issuer is an AWS Cognito user pool
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: FHIR OperationOutcome not-found, not an SPA catch-all
+  - path: /4_0_0/metadata
+    status: 401
+    note: FHIR CapabilityStatement requires authentication
+- host: https://fhir.client-sandbox.icanbwell.com
+  documents:
+  - path: /.well-known/smart-configuration
+    status: 200
+    file: b-well-smart-configuration-sandbox.json
+  - path: /4_0_0/metadata
+    status: 401
+- host: https://api.client-sandbox.icanbwell.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/agent-card.json
+    status: 401
+  - path: /.well-known/agent.json
+    status: 401
+- host: https://developer.bwell.com
+  documents:
+  - path: /llms.txt
+    status: 200
+    file: ../llms/b-well-llms.txt
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+x-evidence:
+  fetched: '2026-08-06'
+  agent_card_found: false

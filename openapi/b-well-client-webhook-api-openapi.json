@@ -1,0 +1,297 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Client Webhook API",
+    "description": "Client's Webhook API to receive bwell messages. The specification is heavily based on FHIR messaging  specification. Some additional notes:\n- The actual URL/POST method to be provided by the client. `/webhook` POST is a placeholder.\n- `destination.endpoint` in the request will reflect the client supplied URL.\n- The client user can be identified via the `urn:client:identifier` `value` in the `Person` resource of the request.\n\n**Resources**:\n- [Messaging using FHIR Resources](https://www.hl7.org/fhir/messaging.html)\n- [Message Header Resource](https://www.hl7.org/fhir/messageheader.html)\n",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/webhook": {
+      "post": {
+        "summary": "Receive a bwell webhook event",
+        "description": "This endpoint accepts bwell async operation events to be handled by the client.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "resourceType": {
+                    "type": "string",
+                    "example": "Bundle"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "message"
+                  },
+                  "id": {
+                    "type": "string",
+                    "example": "bundle-data-export"
+                  },
+                  "entry": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "resource": {
+                          "type": "object",
+                          "properties": {
+                            "resourceType": {
+                              "type": "string"
+                            },
+                            "eventCoding": {
+                              "type": "object",
+                              "properties": {
+                                "system": {
+                                  "type": "string"
+                                },
+                                "code": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "source": {
+                              "type": "object",
+                              "properties": {
+                                "endpoint": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "destination": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "endpoint": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "focus": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "reference": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "extension": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "valueUri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "identifier": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "use": {
+                                    "type": "string"
+                                  },
+                                  "system": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "fullUrl": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "dataExportCompleted": {
+                  "summary": "Data export completed example",
+                  "value": {
+                    "resourceType": "Bundle",
+                    "type": "message",
+                    "id": "bundle-data-export",
+                    "entry": [
+                      {
+                        "resource": {
+                          "resourceType": "MessageHeader",
+                          "eventCoding": {
+                            "system": "http://icanbwell.com/event-types",
+                            "code": "data-export-completed"
+                          },
+                          "source": {
+                            "endpoint": "https://icanbwell.com"
+                          },
+                          "destination": [
+                            {
+                              "endpoint": "https://client.system.com/webhook"
+                            }
+                          ],
+                          "focus": [
+                            {
+                              "reference": "Person/789"
+                            }
+                          ],
+                          "extension": [
+                            {
+                              "url": "http://icanbwell.com/fhir/StructureDefinition/download-url",
+                              "valueUri": "https://app.prod.icanbwell.com/client_id#/auth?authCode=12345&redirectUri=https://app.prod.icanbwell.com/client_id#/download/12345?type=userDataExport"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "fullUrl": "https://icanbwell.com/fhir/Person/789",
+                        "resource": {
+                          "resourceType": "Person",
+                          "id": "789",
+                          "identifier": [
+                            {
+                              "use": "official",
+                              "system": "urn:client:identifier",
+                              "value": "a5ddab6d-24b0-4e52-a99d-f33263db5997"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "userDeleteCompleted": {
+                  "summary": "User delete completed example",
+                  "value": {
+                    "resourceType": "Bundle",
+                    "type": "message",
+                    "id": "bundle-user-delete",
+                    "entry": [
+                      {
+                        "resource": {
+                          "resourceType": "MessageHeader",
+                          "eventCoding": {
+                            "system": "http://icanbwell.com/event-types",
+                            "code": "user-delete-completed"
+                          },
+                          "source": {
+                            "endpoint": "https://icanbwell.com"
+                          },
+                          "destination": [
+                            {
+                              "endpoint": "https://client.system.com/webhook"
+                            }
+                          ],
+                          "focus": [
+                            {
+                              "reference": "Person/789"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "fullUrl": "https://icanbwell.com/fhir/Person/789",
+                        "resource": {
+                          "resourceType": "Person",
+                          "id": "789",
+                          "identifier": [
+                            {
+                              "use": "official",
+                              "system": "urn:client:identifier",
+                              "value": "a5ddab6d-24b0-4e52-a99d-f33263db5997"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully received the webhook event.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "resourceType": "Bundle",
+                  "type": "message",
+                  "id": "bundle-webhook-response",
+                  "entry": [
+                    {
+                      "resource": {
+                        "resourceType": "MessageHeader",
+                        "eventCoding": {
+                          "system": "http://icanbwell.com/event-types",
+                          "code": "webhook-payload-received"
+                        },
+                        "source": {
+                          "endpoint": "https://client.system.com"
+                        },
+                        "destination": [
+                          {
+                            "endpoint": "https://icanbwell.com"
+                          }
+                        ],
+                        "response": {
+                          "identifier": "bundle-user-delete",
+                          "code": "ok"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request payload."
+          },
+          "401": {
+            "description": "Invalid HMAC signature.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}

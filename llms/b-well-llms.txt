@@ -1,0 +1,535 @@
+# b.well SDK Documentation
+
+> Documentation for b.well SDK
+
+## Guides
+- [Welcome](https://developer.bwell.com/docs/welcome.md): Getting Started with b.well's Developer Portal
+- [Testing Considerations](https://developer.bwell.com/docs/testing-considerations.md): Getting Started with b.well's Developer Portal
+- [Sample Applications](https://developer.bwell.com/docs/sample-applications.md): Getting Started with b.well's Developer Portal
+- [Legal Notices - General ](https://developer.bwell.com/docs/legal-notices-general.md)
+- [Authentication](https://developer.bwell.com/docs/auth-overview.md): Overview
+- [End-User Authentication](https://developer.bwell.com/docs/end-user-auth.md): Overview
+- [Example: OAuth Token Exchange](https://developer.bwell.com/docs/oauth-token-exchange.md): How to exchange your OAuth token for b.well's OAuth token
+- [Example: Token Refresh](https://developer.bwell.com/docs/example-token-refresh.md): How to handle Token Lifecycle Management
+- [User Profile Requirements](https://developer.bwell.com/docs/user-profile-requirements.md): End-User Authentication
+- [System Authentication](https://developer.bwell.com/docs/system-auth.md): Overview
+- [Overview](https://developer.bwell.com/docs/embeddable-overview.md): b.well Embeddable
+- [Web Integration](https://developer.bwell.com/docs/embeddable-web-integration.md): b.well Embeddable
+- [React Native Integration](https://developer.bwell.com/docs/embeddable-react-native-integration.md): b.well Embeddable
+- [Overview](https://developer.bwell.com/docs/websdk-overview.md): b.well Health SDK for Web
+- [Initialize and Authenticate](https://developer.bwell.com/docs/initiailize-and-authenticate.md): Workflow Guide
+- [Account Creation & Consent](https://developer.bwell.com/docs/account-creation-consent.md): Workflow Guide
+- [Searching Health Resources](https://developer.bwell.com/docs/searching-health-resources.md): Workflow Guide
+- [Establishing and Managing Connections](https://developer.bwell.com/docs/establishing-and-managing-connections.md): Workflow Guide
+- [Smart Connect: Locating & Managing Connections](https://developer.bwell.com/docs/smart-connect-locating-managing-connections.md): Workflow Guide
+- [Health Record Retrieval](https://developer.bwell.com/docs/health-record-retrieval.md): Workflow Guide
+- [Codings in Health Data Request Objects](https://developer.bwell.com/docs/codings-in-health-data-request-objects-1.md)
+- [User Account Deletion](https://developer.bwell.com/docs/user-account-deletion.md): Workflow Guide
+- [Request Objects Guide](https://developer.bwell.com/docs/request-object-guide.md): Workflow Guide
+- [Working with User Consents](https://developer.bwell.com/docs/consents-typescript-sdk.md): Use the b.well TypeScript SDK to read, create, filter, and troubleshoot user consents.
+- [Working with Tasks](https://developer.bwell.com/docs/working-with-tasks.md): Retrieve care needs, health activities, next best actions, and network retrieval tasks with the b.well TypeScript SDK (@icanbwell/bwell-sdk-ts)
+- [Changelog](https://developer.bwell.com/docs/changelog-1.md)
+- [Overview](https://developer.bwell.com/docs/kotlinsdk-overview.md): b.well Health SDK for Android
+- [Initializing the SDK](https://developer.bwell.com/docs/initialize.md): b.well Health SDK for Android
+- [Authenticating a User](https://developer.bwell.com/docs/authenticate.md): b.well Health SDK for Android
+- [Retrieve Identity Verification Status](https://developer.bwell.com/docs/retrieve-user-identity-verification-status.md): b.well Health SDK for Android
+- [Update User Profile Data](https://developer.bwell.com/docs/update-user-profile.md): b.well Health SDK for Android
+- [Retrieve User Profile Data](https://developer.bwell.com/docs/get-user-profile.md): b.well Health SDK for Android
+- [Delete A User's Account](https://developer.bwell.com/docs/delete-user.md): b.well Health SDK for Android
+- [Register a Device](https://developer.bwell.com/docs/register-a-device.md): b.well Health SDK for Android
+- [Deregister a Device](https://developer.bwell.com/docs/deregister-a-device.md): b.well Health SDK for Android
+- [Create User Consent Data](https://developer.bwell.com/docs/update-user-consent.md): b.well Health SDK for Android
+- [Retrieve User Consent Data](https://developer.bwell.com/docs/get-user-consents.md): b.well Health SDK for Android
+- [Search Connections](https://developer.bwell.com/docs/search-connections.md): b.well Health SDK for Android
+- [Search Providers](https://developer.bwell.com/docs/search-providers.md): b.well Health SDK for Android
+- [Unified Search](https://developer.bwell.com/docs/unified-search.md): b.well Health SDK for Android
+- [Retrieve a Data Source](https://developer.bwell.com/docs/retrieve-a-data-source.md): b.well Health SDK for Android
+- [Retrieve an Oauth URL](https://developer.bwell.com/docs/retrieving-oauthurl.md): b.well Health SDK for Android
+- [Create a Data Connection](https://developer.bwell.com/docs/create-connection.md): b.well Health SDK for Android
+- [Retrieve a User's Data Connections](https://developer.bwell.com/docs/get-member-connections.md): b.well Health SDK for Android
+- [Delete a Connection](https://developer.bwell.com/docs/delete-a-connection.md): b.well Health SDK for Android
+- [Disconnect a Connection](https://developer.bwell.com/docs/disconnect-connection.md): b.well Health SDK for Android
+- [Request a New Connection](https://developer.bwell.com/docs/request-a-connection.md): b.well Health SDK for Android
+- [Retrieve Individual Access Connections & Status](https://developer.bwell.com/docs/retrieve-a-users-individual-access-connections.md): b.well Health SDK for Android
+- [Activate a Disconnected Connection](https://developer.bwell.com/docs/activate-a-disconnected-connection.md): b.well Health SDK for Android
+- [Setup Mobile Sync](https://developer.bwell.com/docs/setup-mobile-sync.md): b.well Health SDK for iPhone
+- [Get Device User Status](https://developer.bwell.com/docs/get-device-user-status.md): b.well Health SDK for iPhone
+- [Get Device Provider Status](https://developer.bwell.com/docs/get-device-provider-status.md): b.well Health SDK for iPhone
+- [Get Device Providers](https://developer.bwell.com/docs/get-device-providers.md): b.well Health SDK for iPhone
+- [Health Sync Overview & Best Practices](https://developer.bwell.com/docs/health-sync-overview.md): b.well Health SDK for iPhone
+- [Connect](https://developer.bwell.com/docs/connect-mobile-sync.md): b.well Health SDK for iPhone
+- [Disconnect](https://developer.bwell.com/docs/disconnect-mobile-sync.md): b.well Health SDK for iPhone
+- [Request Permissions](https://developer.bwell.com/docs/request-permissions.md): b.well Health SDK for iPhone
+- [Sync](https://developer.bwell.com/docs/sync-health-data.md): b.well Health SDK for iPhone
+- [Health Summary](https://developer.bwell.com/docs/health-summary.md)
+- [Codings in Health Data Request Objects](https://developer.bwell.com/docs/codings-in-health-data-request-objects.md)
+- [Filtering Base Resources by Date](https://developer.bwell.com/docs/filtering-base-resources-by-date.md)
+- [Allergy Intolerances](https://developer.bwell.com/docs/allergyintolerances.md)
+- [Care Plans](https://developer.bwell.com/docs/careplans.md)
+- [Conditions](https://developer.bwell.com/docs/conditions.md)
+- [Encounters](https://developer.bwell.com/docs/encounters.md)
+- [Immunizations](https://developer.bwell.com/docs/immunizations.md)
+- [Procedures](https://developer.bwell.com/docs/procedures.md)
+- [Vital Signs](https://developer.bwell.com/docs/vital-signs.md)
+- [Medications](https://developer.bwell.com/docs/medications.md)
+- [Medication Knowledge](https://developer.bwell.com/docs/medication-knowledge.md)
+- [Medication Pricing](https://developer.bwell.com/docs/medication-pricing.md)
+- [Labs](https://developer.bwell.com/docs/labs.md)
+- [Lab Knowledge](https://developer.bwell.com/docs/lab-knowledge.md)
+- [Document References (Clinical Notes)](https://developer.bwell.com/docs/document-references-clinical-notes.md)
+- [Retrieve JSON FHIR Data](https://developer.bwell.com/docs/retrieve-json-fhir-data.md)
+- [Care Teams](https://developer.bwell.com/docs/care-teams.md)
+- [Patient](https://developer.bwell.com/docs/patient.md)
+- [Device Metrics](https://developer.bwell.com/docs/device-metrics.md): b.well Health SDK for iPhone
+- [Device Metrics Groups](https://developer.bwell.com/docs/device-metrics-groups.md): b.well Health SDK for iPhone
+- [Health Score](https://developer.bwell.com/docs/health-score.md): b.well Health SDK for iPhone
+- [Body System Score](https://developer.bwell.com/docs/body-system-score.md): b.well Health SDK for iPhone
+- [Retrieve Tasks for a User](https://developer.bwell.com/docs/retrieve-tasks-for-a-user.md): b.well Health SDK for Android
+- [Update Task Status](https://developer.bwell.com/docs/update-task-status.md): b.well Health SDK for Android
+- [SDK API Error Handling](https://developer.bwell.com/docs/error-codes.md)
+- [Overview](https://developer.bwell.com/docs/swiftsdk-overview.md): b.well Health SDK for iPhone
+- [Setup Mobile Sync](https://developer.bwell.com/docs/setup-mobile-sync.md): b.well Health SDK for iPhone
+- [Get Device User Status](https://developer.bwell.com/docs/get-device-user-status.md): b.well Health SDK for iPhone
+- [Get Device Provider Status](https://developer.bwell.com/docs/get-device-provider-status.md): b.well Health SDK for iPhone
+- [Get Device Providers](https://developer.bwell.com/docs/get-device-providers.md): b.well Health SDK for iPhone
+- [Health Sync Overview & Best Practices](https://developer.bwell.com/docs/health-sync-overview.md): b.well Health SDK for iPhone
+- [Connect](https://developer.bwell.com/docs/connect-mobile-sync.md): b.well Health SDK for iPhone
+- [Disconnect](https://developer.bwell.com/docs/disconnect-mobile-sync.md): b.well Health SDK for iPhone
+- [Request Permissions](https://developer.bwell.com/docs/request-permissions.md): b.well Health SDK for iPhone
+- [Sync](https://developer.bwell.com/docs/sync-health-data.md): b.well Health SDK for iPhone
+- [Device Metrics](https://developer.bwell.com/docs/device-metrics.md): b.well Health SDK for iPhone
+- [Device Metrics Groups](https://developer.bwell.com/docs/device-metrics-groups.md): b.well Health SDK for iPhone
+- [Health Score](https://developer.bwell.com/docs/health-score.md): b.well Health SDK for iPhone
+- [Body System Score](https://developer.bwell.com/docs/body-system-score.md): b.well Health SDK for iPhone
+- [Changelog](https://developer.bwell.com/docs/iphone-changelog.md)
+- [Overview](https://developer.bwell.com/docs/aisdk-overview.md): b.well Health SDK for AI
+- [OpenAI (ChatGPT)](https://developer.bwell.com/docs/mcp-openai.md): MCP Client Configuration Guide
+- [Anthropic (Claude)](https://developer.bwell.com/docs/mcp-anthropic.md): MCP Client Configuration Guide
+- [Google (Gemini)](https://developer.bwell.com/docs/mcp-google.md): MCP Client Configuration Guide
+- [Agents Catalog](https://developer.bwell.com/docs/mcp-tools-agents.md)
+- [Insurance Policy](https://developer.bwell.com/docs/insurance-policy.md)
+- [Validate Insurance Coverage](https://developer.bwell.com/docs/validate-insurance-coverage.md)
+- [List Available Insurance Documents](https://developer.bwell.com/docs/list-available-insurance-documents.md)
+- [Explore Policy Context](https://developer.bwell.com/docs/explore-policy-context.md)
+- [Search Insurance Policy](https://developer.bwell.com/docs/search-insurance-policy.md)
+- [Health Records](https://developer.bwell.com/docs/health-records.md)
+- [Get Demographics](https://developer.bwell.com/docs/get-demographics.md)
+- [Get Health Scores](https://developer.bwell.com/docs/get-health-scores.md)
+- [Get FHIR Record](https://developer.bwell.com/docs/get-fhir-record-mcp-toolagent.md)
+- [Get Patient Summary](https://developer.bwell.com/docs/get-patient-summary.md)
+- [Get Vitals](https://developer.bwell.com/docs/get-vitals.md)
+- [Get Wearables Summary](https://developer.bwell.com/docs/get-wearables.md)
+- [Get Labs](https://developer.bwell.com/docs/get-labs.md)
+- [Search Clinical Notes](https://developer.bwell.com/docs/search-clinical-notes-mcp-toolagent.md)
+- [Provider & Connections](https://developer.bwell.com/docs/provider-connections.md)
+- [Provider Search](https://developer.bwell.com/docs/provider-search.md)
+- [Search Connections](https://developer.bwell.com/docs/search-connections-1.md)
+- [Connect to Data Source](https://developer.bwell.com/docs/connect-to-data-source.md)
+- [Scheduling & Appointments](https://developer.bwell.com/docs/scheduling-appointments.md)
+- [Get Scheduling Slots](https://developer.bwell.com/docs/get-scheduling-slots.md)
+- [Schedule Appointment](https://developer.bwell.com/docs/schedule-appointment.md)
+- [Get Appointments](https://developer.bwell.com/docs/get-appointments.md)
+- [Get Cancel Reasons](https://developer.bwell.com/docs/get-cancel-reasons.md)
+- [Cancel Appointment](https://developer.bwell.com/docs/cancel-appointment.md)
+- [Register Patient for Scheduling](https://developer.bwell.com/docs/register-patient-for-scheduling.md)
+- [Get Visit Types](https://developer.bwell.com/docs/get-visit-types.md)
+- [Get Appointment Detail](https://developer.bwell.com/docs/get-appointment-detail.md)
+- [Reschedule Appointment](https://developer.bwell.com/docs/reschedule-appointment.md)
+- [Get Upcoming Appointments](https://developer.bwell.com/docs/get-upcoming-appointments.md)
+- [Pharmacy](https://developer.bwell.com/docs/pharmacy.md)
+- [Find Pharmacy Stores](https://developer.bwell.com/docs/find-pharmacy-stores.md)
+- [Get Pharmacy Hours](https://developer.bwell.com/docs/get-pharmacy-hours.md)
+- [Check Transfer Eligibility](https://developer.bwell.com/docs/check-transfer-eligibility.md)
+- [Transfer Prescription](https://developer.bwell.com/docs/transfer-prescription.md)
+- [Convert Zipcode to GPS Lat/Lon](https://developer.bwell.com/docs/convert-zipcode-to-gps-latlon.md)
+- [Get Current Datetime](https://developer.bwell.com/docs/get-current-datetime.md)
+- [Changelog](https://developer.bwell.com/docs/changelog-3.md)
+- [Overview](https://developer.bwell.com/docs/app-apis-overview.md): Application APIs
+- [Environments & Identity Endpoints](https://developer.bwell.com/docs/environments-auth.md): Application APIs
+- [Account Creation & Consent](https://developer.bwell.com/docs/account-creation-consent-1.md): Application APIs
+- [Search & Establish Data Connections](https://developer.bwell.com/docs/search-establish-data-connections.md): Application APIs
+- [OAuth Connection Flow](https://developer.bwell.com/docs/oauth-connection-flow.md): Application APIs
+- [Labcorp Data Connection Integration Guide](https://developer.bwell.com/docs/labcorp-direct-connection-implementation-guide.md)
+- [Managing Data Connections](https://developer.bwell.com/docs/managing-data-connections.md): Application APIs
+- [Locating and Managing IAS Connections](https://developer.bwell.com/docs/locating-and-managing-ias-connections.md): Application APIs
+- [Health Record Retrieval ($everything)](https://developer.bwell.com/docs/health-record-retrieval-1.md): Application APIs
+- [Additional Health Record Retrieval Options](https://developer.bwell.com/docs/additional-health-record-retrieval.md): Application APIs
+- [Share My Records](https://developer.bwell.com/docs/share-my-records.md): Application APIs
+- [User Account Deletion](https://developer.bwell.com/docs/user-account-deletion-1.md): Application APIs
+- [bailey (Health AI Assistant) SDK](https://developer.bwell.com/docs/bailey-sdk.md): bailey is a read-to-deploy Health AI Assistant you can use in your mobile apps
+- [bailey Embeddable UI](https://developer.bwell.com/docs/bailey-embeddable-ui.md): bailey is a read-to-deploy Health AI Assistant you can use in your mobile apps
+- [bailey Chat Completions API](https://developer.bwell.com/docs/bailey-chat-completions-api.md): bailey is a read-to-deploy Health AI Assistant you can use in your mobile apps
+- [bailey Responses API](https://developer.bwell.com/docs/bailey-responses-api.md)
+- [Overview](https://developer.bwell.com/docs/fhirserver-overview.md): b.well FHIR Server
+- [FHIR Server Authentication](https://developer.bwell.com/docs/example-fhir-server-authentication.md): b.well FHIR Server
+- [Querying Individual FHIR Resources](https://developer.bwell.com/docs/fhirserver-individual-resources.md)
+- [$everything](https://developer.bwell.com/docs/fhirserver-everything.md): b.well FHIR Server
+- [International Patient Summary (IPS)](https://developer.bwell.com/docs/fhirserver-ips.md): b.well FHIR Server
+- [Paging vs Streaming](https://developer.bwell.com/docs/paging-vs-streaming.md): b.well FHIR server
+- [FHIR Server Web UI](https://developer.bwell.com/docs/fhir-server-web-ui.md): b.well FHIR Server
+- [Overview](https://developer.bwell.com/docs/fhirsdk-overview.md)
+- [Data Mapping](https://developer.bwell.com/docs/data-mapping.md)
+- [Data Processing](https://developer.bwell.com/docs/data-processing.md)
+- [Performance](https://developer.bwell.com/docs/performance.md)
+- [Testing and Validation](https://developer.bwell.com/docs/testing-and-validation.md)
+- [SDK Modules](https://developer.bwell.com/docs/sdk-modules.md)
+- [b.well FHIR Server](https://developer.bwell.com/docs/bwell-fhir-server.md)
+- [FHIR SDK for Databricks](https://developer.bwell.com/docs/fhir-client-sdk.md)
+- [SparkPipelineFramework](https://developer.bwell.com/docs/sparkpipelineframework.md)
+- [SparkAutoMapper](https://developer.bwell.com/docs/sparkautomapper.md)
+- [SparkAutoMapper.FHIR](https://developer.bwell.com/docs/sparkautomapperfhir.md)
+- [SparkFhirSchemas](https://developer.bwell.com/docs/sparkfhirschemas.md)
+- [SparkPipelineFramework.Testing](https://developer.bwell.com/docs/sparkpipelineframeworktesting.md)
+- [Incorporating into Databricks](https://developer.bwell.com/docs/incorporating-into-databricks.md)
+- [Key Considerations](https://developer.bwell.com/docs/key-considerations.md)
+- [Smart Connect Flow Diagram](https://developer.bwell.com/docs/individual-access-service-flow-diagram.md): Flow Diagram for Smart Connect feature using Individual Access Service (IAS) to query the b.well network of networks to locate a user's data
+- [Medication Module Class Diagram](https://developer.bwell.com/docs/medication-module-class-diagram.md)
+- [Connection State Diagram](https://developer.bwell.com/docs/connection-state-diagram.md)
+- [Data Connection Sequence Diagram](https://developer.bwell.com/docs/data-connection-sequence-diagram.md)
+- [Onboarding Flow Diagram](https://developer.bwell.com/docs/onboarding-flow-diagram.md)
+- [Data Connection Request Testing](https://developer.bwell.com/docs/data-connection-request-testing.md): A guide to testing the Data Connection Request workflow in Sandbox
+- [IAL2 Verification Integration Guide](https://developer.bwell.com/docs/ial2-verification-workflow.md)
+- [Push Notification Integration Guide](https://developer.bwell.com/docs/push-notifications.md)
+- [Release Notes](https://developer.bwell.com/docs/release-notes.md)
+- [b.well Backend Service Updates](https://developer.bwell.com/docs/bwell-backend-updates.md)
+- [b.well Backend Updates (7/22/26)](https://developer.bwell.com/docs/bwell-backend-updates-71726.md)
+- [b.well Backend Updates (6/22/26)](https://developer.bwell.com/docs/bwell-backend-updates-62226.md)
+- [b.well Backend Updates (4/1/26)](https://developer.bwell.com/docs/bwell-backend-updates-4126.md)
+- [b.well Backend Updates (3/23/26)](https://developer.bwell.com/docs/bwell-backend-updates-32326.md)
+- [b.well Backend Updates (3/17/26)](https://developer.bwell.com/docs/bwell-backend-updates-31726.md)
+- [b.well Backend Updates (2/2/26)](https://developer.bwell.com/docs/bwell-backend-update-2226.md)
+- [b.well Backend Update (1/29/26)](https://developer.bwell.com/docs/bwell-backend-update-21226.md)
+- [b.well Backend Update (1/27/26)](https://developer.bwell.com/docs/bwell-backend-update-1.md)
+- [b.well Backend Update (10/28/25)](https://developer.bwell.com/docs/bwell-backend-update-102825.md)
+- [b.well Backend Update (6/16/25)](https://developer.bwell.com/docs/bwell-backend-updates-61625.md)
+- [b.well Backend Update (4/18/25)](https://developer.bwell.com/docs/bwell-backend-update-41825.md)
+- [b.well Backend Update (3/28/25)](https://developer.bwell.com/docs/bwell-backend-update-32825.md)
+- [b.well Backend Update (3/12/25)](https://developer.bwell.com/docs/bwell-backend-update-31225.md)
+- [b.well Backend Update (1/3/25)](https://developer.bwell.com/docs/bwell-backend-update-1325.md)
+- [b.well Backend Update (12/18/24)](https://developer.bwell.com/docs/bwell-backend-updates-121824.md)
+- [b.well Backend Update (12/17/24)](https://developer.bwell.com/docs/bwell-backend-update-121724.md)
+- [b.well Backend Update (12/16/24)](https://developer.bwell.com/docs/bwell-backend-update-121624.md)
+- [b.well Backend Update (12/9/24)](https://developer.bwell.com/docs/bwell-backend-update.md)
+- [b.well Backend Update (11/27/24)](https://developer.bwell.com/docs/bwell-backend-update-112724.md)
+- [b.well Backend Updates (11/18/24)](https://developer.bwell.com/docs/bwell-backend-updates-111424-copy.md)
+- [b.well Backend Updates (11/14/24)](https://developer.bwell.com/docs/bwell-backend-updates-11724-copy.md)
+- [b.well Backend Updates (11/7/24)](https://developer.bwell.com/docs/bwell-backend-updates-101824-copy.md)
+- [b.well Backend Updates (10/28/24)](https://developer.bwell.com/docs/bwell-backend-updates-102824.md)
+- [b.well Backend Updates (10/18/24)](https://developer.bwell.com/docs/bwell-backend-updates-1.md)
+- [Terms of Use](https://developer.bwell.com/docs/terms-of-use.md)
+
+## API Reference
+- [Initiate user data export](https://developer.bwell.com/reference/post_users-id-data-exports.md): Endpoint to initiate a user's request for personal health data export.
+- [Initiate user data deletion](https://developer.bwell.com/reference/delete_users-id.md): Endpoint to initiate a request to delete a user's profile and associated information from bwell's system.
+- [Webhooks](https://developer.bwell.com/reference/webhook.md)
+- [Receive a bwell webhook event](https://developer.bwell.com/reference/post_webhook.md): This endpoint accepts bwell async operation events to be handled by the client.
+- [API Reference Overview](https://developer.bwell.com/reference/ts-sdk-apireference.md): API Reference for b.well SDK
+- [TypeScript SDK Core](https://developer.bwell.com/reference/bwellsdk.md): Main entry point for interacting with the b.well Connected Health platform
+- [ConnectionManager](https://developer.bwell.com/reference/connectionmanager.md): Connection Manager for data source connections and OAuth management
+- [DeviceManager](https://developer.bwell.com/reference/devicemanager.md): Methods to register/deregister mobile devices
+- [FinancialManager](https://developer.bwell.com/reference/financialmanager.md): Financial Manager for insurance coverage and financial data access
+- [HealthManager](https://developer.bwell.com/reference/healthmanager.md): Health Manager for patient health records and clinical data access
+- [HealthSpaceManager](https://developer.bwell.com/reference/healthspacemanager.md): Health Space Manager for appointments, scheduling, and healthcare facility management
+- [LanguageManager](https://developer.bwell.com/reference/languagemanager.md): Language Manager for language and localization utilities
+- [QuestionnaireManager](https://developer.bwell.com/reference/questionnairemanager.md): Questionnaire Manager for dynamic questionnaire processing and response handling
+- [SearchManager](https://developer.bwell.com/reference/searchmanager.md): Search Manager for healthcare provider and resource discovery
+- [UserManager](https://developer.bwell.com/reference/usermanager.md): User Manager for profile management, consent handling, and identity verification
+- [AllergyIntoleranceGroupsRequest](https://developer.bwell.com/reference/allergyintolerancegroupsrequest.md): Request object for fetching allergy intolerance group data
+- [AllergyIntolerancesRequest](https://developer.bwell.com/reference/allergyintolerancesrequest.md): Request object for fetching allergy intolerance data
+- [AppointmentsRequest](https://developer.bwell.com/reference/appointmentsrequest.md): Represents a request for appointments within the health space
+- [BinaryRequest](https://developer.bwell.com/reference/binaryrequest.md): Request object for fetching Binary data
+- [CancelAppointmentRequest](https://developer.bwell.com/reference/cancelappointmentrequest.md): Represents a request for canceling an appointment within the health space
+- [CancellationReasonsRequest](https://developer.bwell.com/reference/cancellationreasonsrequest.md): Request object for fetching cancellation reasons
+- [CarePlanGroupsRequest](https://developer.bwell.com/reference/careplangroupsrequest.md): Request object for fetching care plan groups data
+- [CarePlansRequest](https://developer.bwell.com/reference/careplansrequest.md): Request object for fetching care plan data
+- [CareTeamsRequest](https://developer.bwell.com/reference/careteamsrequest.md): Request object for fetching care team data
+- [ConditionGroupsRequest](https://developer.bwell.com/reference/conditiongroupsrequest.md): Request object for fetching condition groups data
+- [ConditionsRequest](https://developer.bwell.com/reference/conditionsrequest.md): Request object for fetching conditions data
+- [ConnectionRequest](https://developer.bwell.com/reference/connectionrequest.md): Request object for creating a connection
+- [CoveragesRequest](https://developer.bwell.com/reference/coveragesrequest.md): Request object for fetching Coverage FHIR resources with validation
+- [CreateConsentRequest](https://developer.bwell.com/reference/createconsentrequest.md): Request object for creating a consent
+- [CreateDataExportDirectDownloadUrlRequest](https://developer.bwell.com/reference/createdataexportdirectdownloadurlrequest.md): Request object for creating a direct download URL for a data export
+- [CreateVerificationUrlRequest](https://developer.bwell.com/reference/createverificationurlrequest.md): Request object for creating a verification URL
+- [DataSourceRequest](https://developer.bwell.com/reference/datasourcerequest.md): Request object for interacting with the API using a connection id
+- [DeregisterDeviceRequest](https://developer.bwell.com/reference/deregisterdevicerequest.md): Request for de-registering a device
+- [DiagnosticReportLabGroupsRequest](https://developer.bwell.com/reference/diagnosticreportlabgroupsrequest.md): Request object for fetching DiagnosticReport Lab Groups
+- [DiagnosticReportsRequest](https://developer.bwell.com/reference/diagnosticreportsrequest.md): Request object for fetching diagnostic reports data
+- [DocumentReferencesRequest](https://developer.bwell.com/reference/documentreferencesrequest.md): Request object for fetching document references data
+- [EncounterGroupsRequest](https://developer.bwell.com/reference/encountergroupsrequest.md): Request object for fetching encounter groups data
+- [EncountersRequest](https://developer.bwell.com/reference/encountersrequest.md): Request object for fetching encounters data
+- [ExplanationOfBenefitsRequest](https://developer.bwell.com/reference/explanationofbenefitsrequest.md): Request object for fetching ExplanationOfBenefit FHIR resources with validation
+- [GetConsentsRequest](https://developer.bwell.com/reference/getconsentsrequest.md): Request object for fetching user consents
+- [HealthDataRequest](https://developer.bwell.com/reference/healthdatarequest.md): Base request object for fetching health data
+- [ImmunizationGroupsRequest](https://developer.bwell.com/reference/immunizationgroupsrequest.md): Request object for fetching immunization groups data
+- [ImmunizationsRequest](https://developer.bwell.com/reference/immunizationsrequest.md): Request object for fetching immunization data
+- [LabGroupsRequest](https://developer.bwell.com/reference/labgroupsrequest.md): Request object for fetching lab groups data
+- [LabKnowledgeRequest](https://developer.bwell.com/reference/labknowledgerequest.md): Request object for fetching lab knowledge data
+- [LabsRequest](https://developer.bwell.com/reference/labsrequest.md): Request object for fetching labs data
+- [MedicationDispenseRequest](https://developer.bwell.com/reference/medicationdispenserequest.md): Request object for fetching medication dispense data
+- [MedicationGroupsRequest](https://developer.bwell.com/reference/medicationgroupsrequest.md): Request object for fetching medication groups data
+- [MedicationKnowledgeRequest](https://developer.bwell.com/reference/medicationknowledgerequest.md): Request object for fetching medication knowledge data
+- [MedicationRequestRequest](https://developer.bwell.com/reference/medicationrequestrequest.md): Request object for fetching medication request data
+- [MedicationStatementsRequest](https://developer.bwell.com/reference/medicationstatementsrequest.md): Request object for fetching medication statement data
+- [NextQuestionRequest](https://developer.bwell.com/reference/nextquestionrequest.md): Request object for handling next question mutations
+- [PagedRequest](https://developer.bwell.com/reference/pagedrequest.md): Base request object for fetching paged data
+- [ProcedureGroupsRequest](https://developer.bwell.com/reference/proceduregroupsrequest.md): Request object for fetching procedure groups data
+- [ProceduresRequest](https://developer.bwell.com/reference/proceduresrequest.md): Request object for fetching procedure data
+- [RegisterDeviceRequest](https://developer.bwell.com/reference/registerdevicerequest.md): Request for registering a device
+- [SearchHealthResourcesRequest](https://developer.bwell.com/reference/searchhealthresourcesrequest.md): Request class for searching health resources
+- [SubmitProviderForReviewRequest](https://developer.bwell.com/reference/submitproviderforreviewrequest.md): Request for submitting a provider or facility for review
+- [UpdateProfileRequest](https://developer.bwell.com/reference/updateprofilerequest.md): Request object for updating user profile information
+- [VitalSignGroupsRequest](https://developer.bwell.com/reference/vitalsigngroupsrequest.md): Request object for fetching vital sign groups data
+- [VitalSignsRequest](https://developer.bwell.com/reference/vitalsignsrequest.md): Request object for fetching vital signs data
+- [Address](https://developer.bwell.com/reference/address.md): Address model representing an address expressed using postal...
+- [AllergyIntolerance](https://developer.bwell.com/reference/allergyintolerance.md): Represents an allergy or intolerance to a substance
+- [AllergyIntoleranceBundle](https://developer.bwell.com/reference/allergyintolerancebundle.md): Bundle of allergy intolerance search results
+- [AllergyIntoleranceGroup](https://developer.bwell.com/reference/allergyintolerancegroup.md): Grouped allergy intolerance data with summary information
+- [AllergyIntoleranceGroupBundle](https://developer.bwell.com/reference/allergyintolerancegroupbundle.md): Response containing grouped allergy intolerance data with paging...
+- [AllergyIntoleranceGroupsResponse](https://developer.bwell.com/reference/allergyintolerancegroupsresponse.md): Response for grouped allergy intolerance data with paging information
+- [AllergyIntoleranceReaction](https://developer.bwell.com/reference/allergyintolerancereaction.md): Represents a reaction to an allergy or intolerance
+- [AllergyIntoleranceResponse](https://developer.bwell.com/reference/allergyintoleranceresponse.md): Response for allergy intolerance search results with paging info.
+- [Annotation](https://developer.bwell.com/reference/annotation.md): Represents an annotation or note with author and...
+- [Appointment](https://developer.bwell.com/reference/appointment.md): Healthcare appointment resource
+- [AppointmentBundle](https://developer.bwell.com/reference/appointmentbundle.md): Bundle containing appointment search results
+- [AppointmentParticipant](https://developer.bwell.com/reference/appointmentparticipant.md): Participant in an appointment
+- [AppointmentUpdate](https://developer.bwell.com/reference/appointmentupdate.md): Appointment update result
+- [Attachment](https://developer.bwell.com/reference/attachment.md): Represents a file attachment or binary data
+- [BaseConnection](https://developer.bwell.com/reference/baseconnection.md): Base connection interface containing common fields shared by...
+- [Bookable](https://developer.bwell.com/reference/bookable.md): Booking availability through different channels
+- [CancellationReasonConcept](https://developer.bwell.com/reference/cancellationreasonconcept.md): Concept within cancellation reason code system
+- [CancellationReasons](https://developer.bwell.com/reference/cancellationreasons.md): Code system containing cancellation reasons
+- [CarePlan](https://developer.bwell.com/reference/careplan.md): Represents a care plan resource.
+- [CarePlanBundle](https://developer.bwell.com/reference/careplanbundle.md): Bundle of care plan search results
+- [CarePlanGroup](https://developer.bwell.com/reference/careplangroup.md): Grouped care plan data with summary information
+- [CarePlanGroupBundle](https://developer.bwell.com/reference/careplangroupbundle.md): Response containing grouped care plan data with paging...
+- [CarePlanGroupResponse](https://developer.bwell.com/reference/careplangroupsresponse.md): Response for grouped care plan data with paging information
+- [CarePlanResponse](https://developer.bwell.com/reference/careplanresponse.md): Response for care plan search results with paging info.
+- [CareTeam](https://developer.bwell.com/reference/careteam.md): A care team represents people, organizations, and other care teams coordinating to deliver care.
+- [CareTeamBundle](https://developer.bwell.com/reference/careteambundle.md): Bundle containing care team search results
+- [CareTeamResponse](https://developer.bwell.com/reference/careteamresponse.md): Response for care team search results with paging info.
+- [CodeableConcept](https://developer.bwell.com/reference/codeableconcept.md): Represents a CodeableConcept with text and coded values
+- [Coding](https://developer.bwell.com/reference/coding.md): Represents a coding in FHIR/GraphQL-compatible format
+- [Component](https://developer.bwell.com/reference/component.md): Represents a component with code, value, reference range,...
+- [Condition](https://developer.bwell.com/reference/condition.md): Represents a condition resource.
+- [ConditionBundle](https://developer.bwell.com/reference/conditionbundle.md): Bundle of condition search results
+- [ConditionGroup](https://developer.bwell.com/reference/conditiongroup.md): Grouped condition data with summary information
+- [ConditionGroupBundle](https://developer.bwell.com/reference/conditiongroupbundle.md): Response containing grouped condition data with paging information
+- [ConditionGroupsResponse](https://developer.bwell.com/reference/conditiongroupsresponse.md): Response for grouped condition data with paging information
+- [ConditionResponse](https://developer.bwell.com/reference/conditionresponse.md): Response for condition search results with paging info.
+- [Connection](https://developer.bwell.com/reference/connection.md): Connection model representing a healthcare provider connection with...
+- [ConnectionStatus](https://developer.bwell.com/reference/connectionstatus.md): Connection status result model
+- [Consent](https://developer.bwell.com/reference/consent.md): Healthcare consumer consent permissions and obligations
+- [ConsentBundle](https://developer.bwell.com/reference/consentbundle.md): Bundle of consent search results
+- [ContactPoint](https://developer.bwell.com/reference/contactpoint.md): ContactPoint model representing details for all kinds of...
+- [Coverage](https://developer.bwell.com/reference/coverage.md): Coverage resource representing insurance or payment coverage
+- [CoverageBundle](https://developer.bwell.com/reference/coveragebundle.md): Bundle of coverage search results
+- [CoverageClass](https://developer.bwell.com/reference/coverageclass.md): A suite of underwriter specific classifiers for insurance coverage
+- [CoverageEntry](https://developer.bwell.com/reference/coverageentry.md): Entry in a coverage bundle
+- [CoveragePayor](https://developer.bwell.com/reference/coveragepayor.md): Entity that pays for insurance coverage
+- [DataSource](https://developer.bwell.com/reference/datasource.md): DataSource model representing information about a healthcare provider...
+- [DeviceRegistrationResults](https://developer.bwell.com/reference/deviceregistrationresults.md): Device registration result with unique identifier
+- [DiagnosticReport](https://developer.bwell.com/reference/diagnosticreport.md): Represents a diagnostic report resource.
+- [DiagnosticReportBundle](https://developer.bwell.com/reference/diagnosticreportbundle.md): Bundle of diagnostic report results.
+- [DiagnosticReportLabGroup](https://developer.bwell.com/reference/diagnosticreportlabgroup.md): Represents a diagnostic report lab group resource matching...
+- [DiagnosticReportLabGroupBundle](https://developer.bwell.com/reference/diagnosticreportlabgroupbundle.md): Bundle containing diagnostic report lab group data with...
+- [DiagnosticReportLabGroupsResponse](https://developer.bwell.com/reference/diagnosticreportlabgroupsresponse.md): Response for grouped diagnostic report lab data with paging information
+- [DiagnosticReportResponse](https://developer.bwell.com/reference/diagnosticreportresponse.md): Response for diagnostic report search results with paging info.
+- [DispenseRequest](https://developer.bwell.com/reference/dispenserequest.md): Represents a medication request dispense request.
+- [Dosage](https://developer.bwell.com/reference/dosage.md): Dosage instruction for medication
+- [DoseAndRate](https://developer.bwell.com/reference/doseandrate.md): Dose and rate information for medication dosage
+- [Encounter](https://developer.bwell.com/reference/encounter.md): Represents an Encounter resource.
+- [EncounterBundle](https://developer.bwell.com/reference/encounterbundle.md): Bundle of encounter results.
+- [EncounterGroup](https://developer.bwell.com/reference/encountergroup.md): Represents an encounter group with aggregated data
+- [EncounterGroupBundle](https://developer.bwell.com/reference/encountergroupbundle.md): Bundle containing encounter group data with paging information
+- [EncounterGroupsResponse](https://developer.bwell.com/reference/encountergroupsresponse.md): Response for grouped encounter data with paging information
+- [EncounterResponse](https://developer.bwell.com/reference/encounterresponse.md): Response for encounter search results with paging info.
+- [Endpoint](https://developer.bwell.com/reference/endpoint.md): Technical endpoint for external system communication
+- [EntryBundle](https://developer.bwell.com/reference/entrybundle.md): Generic simple bundle type for entry-based bundles
+- [ExplanationOfBenefit](https://developer.bwell.com/reference/explanationofbenefit.md): Explanation of Benefit resource for claim adjudication
+- [ExplanationOfBenefitAdjudication](https://developer.bwell.com/reference/explanationofbenefitadjudication.md): Adjudication information
+- [ExplanationOfBenefitBundle](https://developer.bwell.com/reference/explanationofbenefitbundle.md): Bundle of explanation of benefit search results
+- [ExplanationOfBenefitCareTeam](https://developer.bwell.com/reference/explanationofbenefitcareteam.md): Care team member details
+- [ExplanationOfBenefitDiagnosis](https://developer.bwell.com/reference/explanationofbenefitdiagnosis.md): Diagnosis details
+- [ExplanationOfBenefitEntry](https://developer.bwell.com/reference/explanationofbenefitentry.md): Entry in an explanation of benefit bundle
+- [ExplanationOfBenefitInsurance](https://developer.bwell.com/reference/explanationofbenefitinsurance.md): Insurance coverage information
+- [ExplanationOfBenefitItem](https://developer.bwell.com/reference/explanationofbenefititem.md): Line item details
+- [ExplanationOfBenefitPayee](https://developer.bwell.com/reference/explanationofbenefitpayee.md): Payee information
+- [ExplanationOfBenefitPayment](https://developer.bwell.com/reference/explanationofbenefitpayment.md): Payment information
+- [ExplanationOfBenefitProcessNote](https://developer.bwell.com/reference/explanationofbenefitprocessnote.md): Processing note information
+- [ExplanationOfBenefitRelated](https://developer.bwell.com/reference/explanationofbenefitrelated.md): Related claim information
+- [ExplanationOfBenefitResponse](https://developer.bwell.com/reference/explanationofbenefitresponse.md): Response for explanation of benefit  search results with paging info.
+- [ExplanationOfBenefitSupportingInfo](https://developer.bwell.com/reference/explanationofbenefitsupportinginfo.md): Additional information to support the claim
+- [ExplanationOfBenefitTotal](https://developer.bwell.com/reference/explanationofbenefittotal.md): Total benefit amounts
+- [Expression](https://developer.bwell.com/reference/expression.md): Represents an expression used in FHIR resources
+- [Extension](https://developer.bwell.com/reference/extension.md): Represents an extension to FHIR resources
+- [FhirError](https://developer.bwell.com/reference/fhirerror.md): FhirError model
+- [FhirErrorResource](https://developer.bwell.com/reference/fhirerrorresource.md): FhirErrorResource model
+- [FilterValue](https://developer.bwell.com/reference/filtervalue.md): Filter value with occurrence count
+- [FilterValueMeta](https://developer.bwell.com/reference/filtervaluemeta.md): Metadata for filter values with field and available values
+- [GroupedHealthDataResponse](https://developer.bwell.com/reference/groupedhealthdataresponse.md): The SDK result type for grouped health data queries that include paging information at the top level
+- [HealthDataResponse](https://developer.bwell.com/reference/healthdataresponse.md): The SDK result type for health data queries that include paging information at the top level
+- [HealthResource](https://developer.bwell.com/reference/healthresource.md): Health resource search result with provider and location details
+- [HealthResourceLocation](https://developer.bwell.com/reference/healthresourcelocation.md): Location with distance information for health resource searches
+- [HealthResourcesBundle](https://developer.bwell.com/reference/healthresourcesbundle.md): Paginated bundle of health resource search results with filters
+- [HealthSummary](https://developer.bwell.com/reference/healthsummary.md): Represents a health summary with resource groups and counts
+- [HumanName](https://developer.bwell.com/reference/humanname.md): Represents a human name with various components
+- [IdentifiedResourceEntry](https://developer.bwell.com/reference/identifiedresourceentry.md): Generic entry wrapper type for bundle entries with...
+- [Identifier](https://developer.bwell.com/reference/identifier.md): Represents an identifier for uniquely identifying resources
+- [Immunization](https://developer.bwell.com/reference/immunization.md): Represents an immunization resource
+- [ImmunizationBundle](https://developer.bwell.com/reference/immunizationbundle.md): Bundle of immunization search results
+- [ImmunizationGroup](https://developer.bwell.com/reference/immunizationgroup.md): Represents an immunization group resource matching GraphQL structure
+- [ImmunizationGroupBundle](https://developer.bwell.com/reference/immunizationgroupbundle.md): Bundle containing immunization group data with paging information
+- [ImmunizationGroupsResponse](https://developer.bwell.com/reference/immunizationgroupsresponse.md): Response for grouped immunization data with paging information
+- [ImmunizationResponse](https://developer.bwell.com/reference/immunizationresponse.md): Response for immunization search results with paging info.
+- [InitialFill](https://developer.bwell.com/reference/initialfill.md): Represents the initial fill component of a dispense request.
+- [LabBundle](https://developer.bwell.com/reference/labbundle.md): Bundle of lab search results
+- [LabGroup](https://developer.bwell.com/reference/labgroup.md): Represents a lab group resource matching GraphQL structure
+- [LabGroupBundle](https://developer.bwell.com/reference/labgroupbundle.md): Bundle containing lab group data with paging information
+- [LabGroupsResponse](https://developer.bwell.com/reference/labgroupsresponse.md): Response for grouped lab data with paging information
+- [LabKnowledge](https://developer.bwell.com/reference/labknowledge.md): Lab knowledge resource containing content information about a lab.
+- [LabKnowledgeResourceBundle](https://developer.bwell.com/reference/labknowledgeresourcebundle.md): Bundle containing lab knowledge resources with paging information
+- [LabKnowledgeResponse](https://developer.bwell.com/reference/labknowledgeresponse.md): Response type for lab knowledge.
+- [LabResponse](https://developer.bwell.com/reference/labresponse.md): Response for lab search results with paging info.
+- [Location](https://developer.bwell.com/reference/location.md): Represents a physical location or place
+- [Medication](https://developer.bwell.com/reference/medication.md): Represents a medication resource.
+- [MedicationDispense](https://developer.bwell.com/reference/medicationdispense.md): Represents a medication dispense resource.
+- [MedicationDispenseBundle](https://developer.bwell.com/reference/medicationdispensebundle.md): Bundle of medication dispense results.
+- [MedicationDispenseResponse](https://developer.bwell.com/reference/medicationdispenseresponse.md): Response for medication dispense search results with paging info.
+- [MedicationGroup](https://developer.bwell.com/reference/medicationgroup.md): Represents a medication group resource matching GraphQL structure
+- [MedicationGroupBundle](https://developer.bwell.com/reference/medicationgroupbundle.md): Bundle containing medication group data with paging information
+- [MedicationGroupsResponse](https://developer.bwell.com/reference/medicationgroupsresponse.md): Response for grouped medication data with paging information
+- [MedicationKnowledge](https://developer.bwell.com/reference/medicationknowledge.md): Medication knowledge.
+- [MedicationKnowledgeResourceBundle](https://developer.bwell.com/reference/medicationknowledgeresourcebundle.md): Bundle containing medication knowledge resources with paging information
+- [MedicationGroupsResponse](https://developer.bwell.com/reference/medicationknowledgeresponse.md): Response type for medication knowledge.
+- [MedicationPricing](https://developer.bwell.com/reference/medicationpricing.md): Medication pricing.
+- [MedicationPricingResponse](https://developer.bwell.com/reference/medicationpricingresponse.md): Response type for medication pricing.
+- [MedicationRequest](https://developer.bwell.com/reference/medicationrequest.md): Represents a medication request resource.
+- [MedicationRequestBundle](https://developer.bwell.com/reference/medicationrequestbundle.md): Bundle of medication request results.
+- [MedicationRequestResponse](https://developer.bwell.com/reference/medicationrequestresponse.md): Response for medication request search results with paging info.
+- [MedicationStatement](https://developer.bwell.com/reference/medicationstatement.md): Represents a medication statement resource indicating a patient's medication usage.
+- [MedicationStatementBundle](https://developer.bwell.com/reference/medicationstatementbundle.md): Bundle of medication statement results.
+- [MedicationStatementResponse](https://developer.bwell.com/reference/medicationstatementresponse.md): Response for medication statement search results with paging info.
+- [MemberConnection](https://developer.bwell.com/reference/memberconnection.md): MemberConnection model representing a member's healthcare provider connection
+- [Meta](https://developer.bwell.com/reference/meta.md): Represents a Meta object containing version and audit...
+- [Money](https://developer.bwell.com/reference/money.md): Monetary amount with currency
+- [Narrative](https://developer.bwell.com/reference/narrative.md): Represents a text narrative with status
+- [OAuthUrl](https://developer.bwell.com/reference/oauthurl.md): OAuth authorization URL result model
+- [Observation](https://developer.bwell.com/reference/observation.md): Represents an observation resource.
+- [OperationOutcome](https://developer.bwell.com/reference/operationoutcome.md): Outcome of an operation that doesn't result in...
+- [Organization](https://developer.bwell.com/reference/organization.md): Healthcare organization with name and endpoints
+- [PagingInfo](https://developer.bwell.com/reference/paginginfo.md): Metadata for paginated GraphQL responses
+- [Patient](https://developer.bwell.com/reference/patient.md): Patient Resource
+- [Period](https://developer.bwell.com/reference/period.md): Represents a period of time with optional start...
+- [Person](https://developer.bwell.com/reference/person.md): Demographics and administrative information about a person
+- [PractitionerRole](https://developer.bwell.com/reference/practitionerrole.md): The types of services that may be provided by a practitioner for a organization.
+- [Procedure](https://developer.bwell.com/reference/procedure.md): Represents a clinical procedure performed on a patient.
+- [ProcedureBundle](https://developer.bwell.com/reference/procedurebundle.md): Bundle of procedure search results
+- [ProcedureGroup](https://developer.bwell.com/reference/proceduregroup.md): Represents a procedure group resource matching GraphQL structure
+- [ProcedureGroupBundle](https://developer.bwell.com/reference/proceduregroupbundle.md): Bundle containing procedure group data with paging information
+- [ProcedureGroupsResponse](https://developer.bwell.com/reference/proceduregroupsresponse.md): Response for grouped procedure data with paging information
+- [ProcedureResponse](https://developer.bwell.com/reference/procedureresponse.md): Response for procedure search results with paging info.
+- [ProviderReviewResult](https://developer.bwell.com/reference/providerreviewresult.md): Provider review operation result with resource type and issues
+- [Quantity](https://developer.bwell.com/reference/quantity.md): Measured amount with units representation
+- [Questionnaire](https://developer.bwell.com/reference/questionnaire.md): Represents a questionnaire definition containing questions and structure
+- [QuestionnaireItem](https://developer.bwell.com/reference/questionnaireitem.md): Represents an item (question or group) within a questionnaire.
+- [QuestionnaireResponse](https://developer.bwell.com/reference/questionnaireresponse.md): Represents a questionnaire response containing answers to questions
+- [QuestionnaireResponseAnswer](https://developer.bwell.com/reference/questionnaireresponseanswer.md): Represents an answer value within questionnaire responses
+- [QuestionnaireResponseItem](https://developer.bwell.com/reference/questionnaireresponseitem.md): Represents an item within a questionnaire response
+- [Range](https://developer.bwell.com/reference/range.md): Value range with low and high boundaries
+- [Ratio](https://developer.bwell.com/reference/ratio.md): Represents a ratio of two quantities
+- [Reference](https://developer.bwell.com/reference/reference.md): Represents a reference to another resource
+- [ReferenceRange](https://developer.bwell.com/reference/referencerange.md): Represents a reference range with text description and...
+- [RelatedPerson](https://developer.bwell.com/reference/relatedperson.md): Represents a personal or non-healthcare-specific relationship.
+- [ResourceBundle](https://developer.bwell.com/reference/resourcebundle.md): Generic bundle type for resources with paging information
+- [PaginatedBundle](https://developer.bwell.com/reference/sdkpaginginfo.md): Common interface used to return paging information
+- [Scheduling](https://developer.bwell.com/reference/scheduling.md): Scheduling and booking information for a location
+- [Score](https://developer.bwell.com/reference/score.md): Score value with calculation details
+- [SearchResponseOrganization](https://developer.bwell.com/reference/searchresponseorganization.md): Healthcare organization with name and endpoints
+- [ServiceRequest](https://developer.bwell.com/reference/servicerequest.md): A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.
+- [Specimen](https://developer.bwell.com/reference/specimen.md): A sample to be used for analysis
+- [Timing](https://developer.bwell.com/reference/timing.md): Specifies an event that may occur multiple times
+- [User](https://developer.bwell.com/reference/user.md): User identity mapping between bWell and client systems
+- [VerificationResult](https://developer.bwell.com/reference/verificationresult.md): Validation requirements and status tracking for identity verification
+- [VitalSignBundle](https://developer.bwell.com/reference/vitalsignbundle.md): Bundle of vital sign search results
+- [VitalSignGroup](https://developer.bwell.com/reference/vitalsigngroup.md): Represents a vital sign group resource matching GraphQL...
+- [VitalSignGroupBundle](https://developer.bwell.com/reference/vitalsigngroupbundle.md): Bundle containing vital sign group data with paging...
+- [VitalSignGroupsResponse](https://developer.bwell.com/reference/vitalsigngroupsresponse.md): Response for grouped vital sign data with paging information
+- [VitalSignResponse](https://developer.bwell.com/reference/vitalsignresponse.md): Response for vital sign search results with paging info.
+- [Practitioner](https://developer.bwell.com/reference/practitioner.md): Practitioner Resource
+- [CategoryCode](https://developer.bwell.com/reference/categorycode.md): CategoryCode enum representing the category code for consents or data.
+- [ConnectionCategory](https://developer.bwell.com/reference/connectioncategory.md): ConnectionCategory enum representing the type of connection authentication...
+- [ConsentProvisionType](https://developer.bwell.com/reference/consentprovisiontype.md): ConsentProvisionType enum representing the type of consent provision.
+- [ConsentStatus](https://developer.bwell.com/reference/consentstatus.md): ConsentStatus enum representing the status of a consent.
+- [DataConnectionStatus](https://developer.bwell.com/reference/dataconnectionstatus.md): DataConnectionStatus enum representing the current status of a data connection...
+- [DataConnectionType](https://developer.bwell.com/reference/dataconnectiontype.md): DataConnectionType enum representing the type of data source connection.
+- [DevicePlatform](https://developer.bwell.com/reference/deviceplatform.md): DevicePlatform enum representing the mobile device platforms.
+- [EndpointStatus](https://developer.bwell.com/reference/endpointstatus.md): Operational status values for technical endpoints
+- [FilterField](https://developer.bwell.com/reference/filterfield.md): Available filter fields for health resource searches
+- [Gender](https://developer.bwell.com/reference/gender.md): Gender classification values for healthcare contexts
+- [LogLevel](https://developer.bwell.com/reference/loglevel.md): Log level string union for SDK logging
+- [PersonGender](https://developer.bwell.com/reference/persongender.md): PersonGender enum representing a person's gender.
+- [SearchContext](https://developer.bwell.com/reference/searchcontext.md): Available search contexts for health resource searches
+- [SearchResultType](https://developer.bwell.com/reference/searchresulttype.md): Categories of health resource search results
+- [SortField](https://developer.bwell.com/reference/sortfield.md): Available sort fields for health resource searches
+- [SortOrder](https://developer.bwell.com/reference/sortorder.md): Available sort orders for health resource searches
+- [SyncStatus](https://developer.bwell.com/reference/syncstatus.md): SyncStatus enum representing the synchronization status of a connection...
+- [AppointmentsRequestInput](https://developer.bwell.com/reference/appointmentsrequestinput.md): Input for appointment searches with filters
+- [CancelAppointmentRequestInput](https://developer.bwell.com/reference/cancelappointmentrequestinput.md): Input for canceling appointments with optional reason
+- [CancellationReasonsRequestInput](https://developer.bwell.com/reference/cancellationreasonsrequestinput.md): Input for fetching cancellation reasons by organization
+- [ConnectionRequestInput](https://developer.bwell.com/reference/connectionrequestinput.md): Input for creating connection with credentials
+- [CoverageRequestInput](https://developer.bwell.com/reference/coveragerequestinput.md): Input for Coverage query with filters and pagination
+- [CreateConsentRequestInput](https://developer.bwell.com/reference/createconsentrequestinput.md): Input for creating user consents with status and provisions
+- [CreateDataExportDirectDownloadUrlRequestInput](https://developer.bwell.com/reference/createdataexportdirectdownloadurlrequestinput.md): Input for creating data export direct download URLs
+- [CreateVerificationUrlRequestInput](https://developer.bwell.com/reference/createverificationurlrequestinput.md): Input for creating verification URLs with optional settings
+- [DataSourceRequestInput](https://developer.bwell.com/reference/datasourcerequestinput.md): Input for fetching data source by connection id
+- [DeregisterDeviceRequestInput](https://developer.bwell.com/reference/deregisterdevicerequestinput.md): Input for deregistering a device
+- [ExplanationOfBenefitRequestInput](https://developer.bwell.com/reference/explanationofbenefitrequestinput.md): Input for ExplanationOfBenefit query with filters and pagination
+- [FieldSortOrder](https://developer.bwell.com/reference/fieldsortorder.md): Used to define field order as ascending or descending
+- [GetConsentsRequestInput](https://developer.bwell.com/reference/getconsentsrequestinput.md): Input for getting user consents by category
+- [HealthDataRequestInput](https://developer.bwell.com/reference/healthdatarequestinput.md): Input for health data queries with filters and pagination
+- [LabKnowledgeRequestInput](https://developer.bwell.com/reference/labknowledgerequestinput.md): Input for fetching lab knowledge by lab ID
+- [MedicationKnowledgeRequestInput](https://developer.bwell.com/reference/medicationknowledgerequestinput.md): Input for fetching medication knowledge by statement ID
+- [NextQuestionRequestInput](https://developer.bwell.com/reference/nextquestionrequestinput.md): Input for navigating through questionnaire questions  This class is experimental and may change in future releases.
+- [OrderBy](https://developer.bwell.com/reference/orderby.md): Sorting configuration for search results
+- [PagedRequestInput](https://developer.bwell.com/reference/pagedrequestinput.md): Input type for paged requests
+- [RegisterDeviceRequestInput](https://developer.bwell.com/reference/registerdevicerequestinput.md): Input for registering a device
+- [SearchDate](https://developer.bwell.com/reference/searchdate.md): Search criteria for date-based filtering
+- [SearchDateValue](https://developer.bwell.com/reference/searchdatevalue.md): Date value with comparison operators
+- [SearchHealthResourcesRequestInput](https://developer.bwell.com/reference/searchhealthresourcesrequestinput.md): Input parameters for searching health resources
+- [SearchPosition](https://developer.bwell.com/reference/searchposition.md): Position coordinates for location-based searches
+- [SearchString](https://developer.bwell.com/reference/searchstring.md): Search criteria for string-based filtering
+- [SearchToken](https://developer.bwell.com/reference/searchtoken.md): Search criteria for token-based filtering
+- [SearchTokenValue](https://developer.bwell.com/reference/searchtokenvalue.md): Token value with system, code, and display
+- [SubmitProviderForReviewRequestInput](https://developer.bwell.com/reference/submitproviderforreviewrequestinput.md): Input parameters for submitting a provider or facility for review
+- [UpdateProfileRequestInput](https://developer.bwell.com/reference/updateprofilerequestinput.md): Input for updating user profile information
+- [AuthenticationError](https://developer.bwell.com/reference/authenticationerror.md): Error thrown when authentication fails
+- [BWellError](https://developer.bwell.com/reference/bwellerror.md): Base error class for the b.well SDK
+- [BWellErrorOptions](https://developer.bwell.com/reference/bwellerroroptions.md): Options for BWellError constructor
+- [IllegalArgumentError](https://developer.bwell.com/reference/illegalargumenterror.md): Error thrown when an illegal argument is provided
+- [IllegalStateError](https://developer.bwell.com/reference/illegalstateerror.md): Error thrown when an illegal state is encountered
+- [InvalidClientKeyError](https://developer.bwell.com/reference/invalidclientkeyerror.md): Error thrown when an invalid client key is provided
+- [InvalidCredentialsTypeError](https://developer.bwell.com/reference/invalidcredentialstypeerror.md): Error thrown when invalid credentials type is provided
+- [InvalidTokenError](https://developer.bwell.com/reference/invalidtokenerror.md): Error thrown when an invalid token is detected
+- [NetworkError](https://developer.bwell.com/reference/networkerror.md): Error thrown when a network error occurs
+- [OperationOutcomeError](https://developer.bwell.com/reference/operationoutcomeerror.md): Error thrown when an operation outcome error occurs
+- [UnknownError](https://developer.bwell.com/reference/unknownerror.md): Error thrown when an unknown error occurs
+- [ValidationError](https://developer.bwell.com/reference/validationerror.md): Error thrown when validation fails
+- [BWellConfig](https://developer.bwell.com/reference/bwellconfig.md): Configuration options for BWellSDK
+- [BWellQueryResult](https://developer.bwell.com/reference/bwellqueryresult.md): Used when just querying for data
+- [BWellTransactionFailure](https://developer.bwell.com/reference/bwelltransactionfailure.md): Class representing a failed operation whose result can only be a failure and never a success
+- [BWellTransactionResult](https://developer.bwell.com/reference/bwelltransactionresult.md): Class representing a successful operation whose result can only be a success or a failure
+- [BWellTransactionSuccess](https://developer.bwell.com/reference/bwelltransactionsuccess.md): Class representing a successful operation whose result can only be a success and never a failure
+- [InMemoryTokenStorage](https://developer.bwell.com/reference/inmemorytokenstorage.md): Default token storage implementation that stores tokens in memory
+- [TokenStorage](https://developer.bwell.com/reference/tokenstorage.md): Interface for storing tokens
+
+## Changelog
+- [b.well SDK v.1.17.0](https://developer.bwell.com/changelog/bwell-sdk-v1170.md)
+- [b.well SDK v1.16.0](https://developer.bwell.com/changelog/bwell-sdk-v1160.md)
+- [b.well SDK v1.15.0](https://developer.bwell.com/changelog/bwell-sdk-v1150.md)
+- [b.well SDK v1.14.0](https://developer.bwell.com/changelog/bwell-sdk-v1140.md)
+- [b.well SDK v.1.13.0](https://developer.bwell.com/changelog/bwell-sdk-v1130.md)
+- [b.well SDK v1.12.3](https://developer.bwell.com/changelog/bwell-sdk-v1123.md)
+- [b.well SDK v.1.12.2](https://developer.bwell.com/changelog/bwell-sdk-v1122.md)
+- [b.well SDK v1.12.0](https://developer.bwell.com/changelog/bwell-sdk-v1120.md)
+- [b.well SDK v1.11.2](https://developer.bwell.com/changelog/bwell-sdk-v1112.md)
+- [b.well SDK v1.10.1](https://developer.bwell.com/changelog/bwell-sdk-v1101.md)

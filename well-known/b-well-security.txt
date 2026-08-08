@@ -1,0 +1,4 @@
+Contact: mailto:security@icanbwell.com
+Expires: 2027-01-01T07:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.icanbwell.com/.well-known/security.txt
