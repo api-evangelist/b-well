@@ -1,23 +1,210 @@
 aid: b-well
 name: b.well
-description: 'b.well is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'b.well Connected Health is a Baltimore-based digital health platform
+  that unifies a person''s fragmented medical, pharmacy, claims, wearable and lab data
+  into a single FHIR-native longitudinal health record, then exposes that record to
+  partner applications through a developer platform. The company operates a consumer-mediated
+  health data network spanning millions of providers, health plans, HIEs/HINs, TEFCA
+  QHINs and CMS-aligned networks, and licenses it to health systems, payers, employers
+  and retail health brands who embed it in their own apps. Its developer surface is
+  built around four Health SDKs (Web/TypeScript, Android/Kotlin, iOS/Swift and an AI
+  SDK that speaks Model Context Protocol), a federated GraphQL gateway, REST endpoints
+  for user data operations and webhooks, and a FHIR R4 server (the open-source Helix
+  FHIR Server) supporting $everything and International Patient Summary retrieval.
+  Authentication is OAuth 2.0 throughout — token exchange with OIDC for end-user context,
+  client credentials for system-to-system access, and HMAC-SHA512 request signing on
+  the user data operations API.'
 url: https://raw.githubusercontent.com/api-evangelist/b-well/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
+image: https://www.icanbwell.com/wp-content/uploads/2023/01/bwell-logo.png
 tags:
 - Company
-apis: []
+- Health
+- Healthcare
+- Digital Health
+- FHIR
+- Health Data
+- Interoperability
+- Patient Access
+- Health Records
+- Model Context Protocol
+apis:
+- aid: b-well:application-apis
+  name: b.well Application APIs
+  description: Federated GraphQL gateway plus REST endpoints that let end-user applications
+    read and write a person's health data, manage data-source connections, handle consent,
+    and coordinate care workflows in an end-user OAuth context.
+  humanURL: https://developer.bwell.com/docs/app-apis-overview
+  baseURL: https://api.client-sandbox.icanbwell.com/v1
+  tags:
+  - Health Data
+  - GraphQL
+  - FHIR
+  properties:
+  - type: Documentation
+    url: https://developer.bwell.com/docs/app-apis-overview
+  - type: GraphQL
+    url: https://api.client-sandbox.icanbwell.com/v1/graphql
+  - type: Console
+    url: https://icanbwell.github.io/graphql-doc-site/
+  - type: Authentication
+    url: https://developer.bwell.com/docs/end-user-auth
+- aid: b-well:user-data-operations
+  name: b.well User Data Operations API
+  description: REST API for user-initiated personal data rights requests — initiating
+    a health data export for a user and initiating deletion of a user's profile and
+    associated information. Requests are signed with HMAC-SHA512 over a canonical set
+    of b.well headers.
+  humanURL: https://developer.bwell.com/reference/post_users-id-data-exports
+  baseURL: https://user-data-ops.prod.icanbwell.com
+  tags:
+  - Health Data
+  - Privacy
+  properties:
+  - type: OpenAPI
+    url: openapi/b-well-user-data-operations-openapi.json
+  - type: Overlay
+    url: overlays/b-well-user-data-operations-overlay.yaml
+  - type: APIReference
+    url: https://developer.bwell.com/reference/post_users-id-data-exports
+- aid: b-well:client-webhook-api
+  name: b.well Client Webhook API
+  description: The webhook contract a b.well client implements to receive asynchronous
+    operation events from b.well. b.well POSTs signed event payloads to the client-hosted
+    endpoint.
+  humanURL: https://developer.bwell.com/reference/post_webhook
+  baseURL: https://developer.bwell.com/reference/webhook
+  tags:
+  - Webhooks
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/b-well-client-webhook-api-openapi.json
+  - type: Overlay
+    url: overlays/b-well-client-webhook-api-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/b-well-webhooks.yml
+- aid: b-well:fhir-server
+  name: b.well FHIR Server
+  description: System-level FHIR R4 API over b.well's normalized clinical data store,
+    built on the open-source Helix FHIR Server. Supports standard FHIR REST search,
+    $everything bulk patient retrieval, International Patient Summary generation, and
+    paging vs streaming responses. Authenticated with OAuth 2.0 client credentials.
+  humanURL: https://developer.bwell.com/docs/fhirserver-overview
+  baseURL: https://fhir.icanbwell.com
+  tags:
+  - FHIR
+  - Health Records
+  - Interoperability
+  properties:
+  - type: Documentation
+    url: https://developer.bwell.com/docs/fhirserver-overview
+  - type: SourceCode
+    url: https://github.com/icanbwell/fhir-server
+  - type: WellKnown
+    url: well-known/b-well-smart-configuration.json
+- aid: b-well:health-sdk-for-ai-mcp
+  name: b.well Health SDK for AI (MCP Server)
+  description: A b.well-hosted Model Context Protocol server that exposes a catalog
+    of healthcare agents/tools — insurance coverage validation, FHIR record and lab
+    retrieval, patient summaries, provider search, appointment scheduling and prescription
+    transfer — to MCP-compatible LLM clients (OpenAI, Anthropic, Google). Every call
+    runs in an authorized end-user context.
+  humanURL: https://developer.bwell.com/docs/aisdk-overview
+  baseURL: https://api.client-sandbox.icanbwell.com/mcp/
+  tags:
+  - Model Context Protocol
+  - AI
+  - Health Data
+  properties:
+  - type: MCPServer
+    url: mcp/b-well-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/b-well-tool-crosswalk.yml
+  - type: Documentation
+    url: https://developer.bwell.com/docs/aisdk-overview
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/b-well-agentic-access.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.icanbwell.com/
+- type: DeveloperPortal
+  url: https://developer.bwell.com/
+- type: Documentation
+  url: https://developer.bwell.com/docs/welcome
+- type: APIReference
+  url: https://developer.bwell.com/reference/ts-sdk-apireference
+- type: GettingStarted
+  url: https://developer.bwell.com/docs/welcome
+- type: Authentication
+  url: authentication/b-well-authentication.yml
+- type: OAuthScopes
+  url: scopes/b-well-scopes.yml
+- type: Support
+  url: mailto:support@icanbwell.com
+- type: Blog
+  url: https://resources.icanbwell.com/
+- type: GitHubOrganization
+  url: https://github.com/icanbwell
+- type: Login
+  url: https://developer.bwell.com/login
+- type: TermsOfService
+  url: https://www.icanbwell.com/legal/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.icanbwell.com/legal/privacy-policy/
+- type: StatusPage
+  url: https://status.bwell.com
+- type: ChangeLog
+  url: changelog/b-well-changelog.yml
+- type: Lifecycle
+  url: lifecycle/b-well-lifecycle.yml
+- type: Packages
+  url: packages/b-well-packages.yml
+- type: SDKs
+  url: packages/b-well-packages.yml
+- type: WellKnown
+  url: well-known/b-well-well-known.yml
+- type: SecurityTxt
+  url: well-known/b-well-security.txt
+- type: Security
+  url: https://www.icanbwell.com/.well-known/security.txt
+- type: VulnerabilityDisclosure
+  url: security/b-well-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/b-well-domain-security.yml
+- type: LLMsTxt
+  url: llms/b-well-llms.txt
+- type: MCPServer
+  url: mcp/b-well-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/b-well-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conformance
+  url: conformance/b-well-conformance.yml
+- type: ErrorCatalog
+  url: errors/b-well-problem-types.yml
+- type: Conventions
+  url: conventions/b-well-conventions.yml
+- type: Sandbox
+  url: sandbox/b-well-sandbox.yml
+- type: Components
+  url: components/b-well-components.yml
+- type: DataModel
+  url: data-model/b-well-data-model.yml
+- type: Webhooks
+  url: asyncapi/b-well-webhooks.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 32
+  pass: local-v1
