@@ -19,7 +19,7 @@ x-type: company
 x-source: harvest:secondary-market
 specificationVersion: '0.20'
 created: '2026-08-06'
-modified: '2026-08-06'
+modified: '2026-08-15'
 image: https://www.icanbwell.com/wp-content/uploads/2023/01/bwell-logo.png
 tags:
 - Company
@@ -106,6 +106,10 @@ apis:
     url: openapi/b-well-users-api-openapi.yml
   - type: APIReference
     url: https://developer.bwell.com/reference/post_users-id-data-exports
+  - type: PostmanCollection
+    url: collections/b-well-users-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/b-well-users-api.opencollection.json
   - type: Webhooks
     url: asyncapi/b-well-webhooks.yml
 - aid: b-well:b-well-webhook-api
@@ -120,6 +124,10 @@ apis:
     url: openapi/b-well-webhook-api-openapi.yml
   - type: APIReference
     url: https://developer.bwell.com/reference/post_users-id-data-exports
+  - type: PostmanCollection
+    url: collections/b-well-webhook-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/b-well-webhook-api.opencollection.json
   - type: Webhooks
     url: asyncapi/b-well-webhooks.yml
 maintainers:
@@ -207,8 +215,16 @@ common:
   url: data-model/b-well-data-model.yml
 - type: Webhooks
   url: asyncapi/b-well-webhooks.yml
+- type: Plans
+  url: plans/b-well-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/b-well-rate-limits.yml
+- type: TrustCenter
+  url: security/b-well-trust-center.yml
+- type: Compliance
+  url: security/b-well-trust-center.yml
 x-enrichment:
-  date: '2026-08-06'
+  date: '2026-08-15'
   status: enriched
-  artifacts_added: 32
+  artifacts_added: 3
   pass: local-v1
