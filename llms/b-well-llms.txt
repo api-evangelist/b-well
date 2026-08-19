@@ -69,6 +69,8 @@
 - [Conditions](https://developer.bwell.com/docs/conditions.md)
 - [Encounters](https://developer.bwell.com/docs/encounters.md)
 - [Immunizations](https://developer.bwell.com/docs/immunizations.md)
+- [Insurance Claims](https://developer.bwell.com/docs/insurance-claims.md): Use the b.well Kotlin SDK to read a user's claims — service dates, billed/paid amounts, and claim status — for all plans or for one specific plan.
+- [Insurance Coverage](https://developer.bwell.com/docs/insurance-coverage.md): Use the b.well Kotlin SDK to read a user's insurance plans — insurer, plan name, group and member numbers.
 - [Procedures](https://developer.bwell.com/docs/procedures.md)
 - [Vital Signs](https://developer.bwell.com/docs/vital-signs.md)
 - [Medications](https://developer.bwell.com/docs/medications.md)
@@ -182,6 +184,7 @@
 - [SparkPipelineFramework.Testing](https://developer.bwell.com/docs/sparkpipelineframeworktesting.md)
 - [Incorporating into Databricks](https://developer.bwell.com/docs/incorporating-into-databricks.md)
 - [Key Considerations](https://developer.bwell.com/docs/key-considerations.md)
+- [Send a Patient's Visit Summary](https://developer.bwell.com/docs/send-a-patients-visit-summary.md): A patient has asked that a document you hold reach their referring provider:  a visit summary, a lab result, a discharge note. Send that data via Direct Secure Message.
 - [Smart Connect Flow Diagram](https://developer.bwell.com/docs/individual-access-service-flow-diagram.md): Flow Diagram for Smart Connect feature using Individual Access Service (IAS) to query the b.well network of networks to locate a user's data
 - [Medication Module Class Diagram](https://developer.bwell.com/docs/medication-module-class-diagram.md)
 - [Connection State Diagram](https://developer.bwell.com/docs/connection-state-diagram.md)
@@ -523,13 +526,13 @@
 - [TokenStorage](https://developer.bwell.com/reference/tokenstorage.md): Interface for storing tokens
 
 ## Changelog
-- [b.well SDK v.1.17.0](https://developer.bwell.com/changelog/bwell-sdk-v1170.md)
+- [b.well SDK v1.18.0](https://developer.bwell.com/changelog/bwell-sdk-v1180.md)
+- [b.well SDK v1.17.0](https://developer.bwell.com/changelog/bwell-sdk-v1170.md)
 - [b.well SDK v1.16.0](https://developer.bwell.com/changelog/bwell-sdk-v1160.md)
 - [b.well SDK v1.15.0](https://developer.bwell.com/changelog/bwell-sdk-v1150.md)
 - [b.well SDK v1.14.0](https://developer.bwell.com/changelog/bwell-sdk-v1140.md)
-- [b.well SDK v.1.13.0](https://developer.bwell.com/changelog/bwell-sdk-v1130.md)
+- [b.well SDK v1.13.0](https://developer.bwell.com/changelog/bwell-sdk-v1130.md)
 - [b.well SDK v1.12.3](https://developer.bwell.com/changelog/bwell-sdk-v1123.md)
-- [b.well SDK v.1.12.2](https://developer.bwell.com/changelog/bwell-sdk-v1122.md)
+- [b.well SDK v1.12.2](https://developer.bwell.com/changelog/bwell-sdk-v1122.md)
 - [b.well SDK v1.12.0](https://developer.bwell.com/changelog/bwell-sdk-v1120.md)
 - [b.well SDK v1.11.2](https://developer.bwell.com/changelog/bwell-sdk-v1112.md)
-- [b.well SDK v1.10.1](https://developer.bwell.com/changelog/bwell-sdk-v1101.md)

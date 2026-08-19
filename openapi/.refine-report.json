@@ -1,0 +1,20 @@
+{
+  "provider": "b-well",
+  "sources": [
+    "b-well-users-api-openapi.yml",
+    "b-well-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "b-well-users-api-openapi.yml",
+    "b-well-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "b-well-users-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "b-well-webhook-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

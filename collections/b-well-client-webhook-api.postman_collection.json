@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "1d55ce12-01b4-4b84-8987-a1d26b80a013",
+      "name": "Receive a bwell webhook event",
+      "request": {
+        "name": "Receive a bwell webhook event",
+        "description": {
+          "content": "This endpoint accepts bwell async operation events to be handled by the client.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "webhook"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"<string>\",\n  \"type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"entry\": [\n    {\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"eventCoding\": {\n          \"system\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        \"source\": {\n          \"endpoint\": \"<string>\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"<string>\"\n          },\n          {\n            \"endpoint\": \"<string>\"\n          }\n        ],\n        \"focus\": [\n          {\n            \"reference\": \"<string>\"\n          },\n          {\n            \"reference\": \"<string>\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"<string>\",\n            \"valueUri\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"valueUri\": \"<string>\"\n          }\n        ],\n        \"id\": \"<string>\",\n        \"identifier\": [\n          {\n            \"use\": \"<string>\",\n            \"system\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"use\": \"<string>\",\n            \"system\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      \"fullUrl\": \"<string>\"\n    },\n    {\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"eventCoding\": {\n          \"system\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        \"source\": {\n          \"endpoint\": \"<string>\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"<string>\"\n          },\n          {\n            \"endpoint\": \"<string>\"\n          }\n        ],\n        \"focus\": [\n          {\n            \"reference\": \"<string>\"\n          },\n          {\n            \"reference\": \"<string>\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"<string>\",\n            \"valueUri\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"valueUri\": \"<string>\"\n          }\n        ],\n        \"id\": \"<string>\",\n        \"identifier\": [\n          {\n            \"use\": \"<string>\",\n            \"system\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"use\": \"<string>\",\n            \"system\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      \"fullUrl\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6181669f-44c3-4d1b-8d12-efc068c89510",
+          "name": "Successfully received the webhook event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"Bundle\",\n  \"type\": \"message\",\n  \"id\": \"bundle-data-export\",\n  \"entry\": [\n    {\n      \"resource\": {\n        \"resourceType\": \"MessageHeader\",\n        \"eventCoding\": {\n          \"system\": \"http://icanbwell.com/event-types\",\n          \"code\": \"data-export-completed\"\n        },\n        \"source\": {\n          \"endpoint\": \"https://icanbwell.com\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"https://client.system.com/webhook\"\n          }\n        ],\n        \"focus\": [\n          {\n            \"reference\": \"Person/789\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"http://icanbwell.com/fhir/StructureDefinition/download-url\",\n            \"valueUri\": \"https://app.prod.icanbwell.com/client_id#/auth?authCode=12345&redirectUri=https://app.prod.icanbwell.com/client_id#/download/12345?type=userDataExport\"\n          }\n        ]\n      }\n    },\n    {\n      \"fullUrl\": \"https://icanbwell.com/fhir/Person/789\",\n      \"resource\": {\n        \"resourceType\": \"Person\",\n        \"id\": \"789\",\n        \"identifier\": [\n          {\n            \"use\": \"official\",\n            \"system\": \"urn:client:identifier\",\n            \"value\": \"a5ddab6d-24b0-4e52-a99d-f33263db5997\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"resourceType\": \"Bundle\",\n  \"type\": \"message\",\n  \"id\": \"bundle-webhook-response\",\n  \"entry\": [\n    {\n      \"resource\": {\n        \"resourceType\": \"MessageHeader\",\n        \"eventCoding\": {\n          \"system\": \"http://icanbwell.com/event-types\",\n          \"code\": \"webhook-payload-received\"\n        },\n        \"source\": {\n          \"endpoint\": \"https://client.system.com\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"https://icanbwell.com\"\n          }\n        ],\n        \"response\": {\n          \"identifier\": \"bundle-user-delete\",\n          \"code\": \"ok\"\n        }\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "72067373-870d-4d3c-b97a-97da1c340453",
+          "name": "Invalid request payload.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"Bundle\",\n  \"type\": \"message\",\n  \"id\": \"bundle-data-export\",\n  \"entry\": [\n    {\n      \"resource\": {\n        \"resourceType\": \"MessageHeader\",\n        \"eventCoding\": {\n          \"system\": \"http://icanbwell.com/event-types\",\n          \"code\": \"data-export-completed\"\n        },\n        \"source\": {\n          \"endpoint\": \"https://icanbwell.com\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"https://client.system.com/webhook\"\n          }\n        ],\n        \"focus\": [\n          {\n            \"reference\": \"Person/789\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"http://icanbwell.com/fhir/StructureDefinition/download-url\",\n            \"valueUri\": \"https://app.prod.icanbwell.com/client_id#/auth?authCode=12345&redirectUri=https://app.prod.icanbwell.com/client_id#/download/12345?type=userDataExport\"\n          }\n        ]\n      }\n    },\n    {\n      \"fullUrl\": \"https://icanbwell.com/fhir/Person/789\",\n      \"resource\": {\n        \"resourceType\": \"Person\",\n        \"id\": \"789\",\n        \"identifier\": [\n          {\n            \"use\": \"official\",\n            \"system\": \"urn:client:identifier\",\n            \"value\": \"a5ddab6d-24b0-4e52-a99d-f33263db5997\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "855db4dd-7690-4c57-a454-1e36cc9a8b5a",
+          "name": "Invalid HMAC signature.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"Bundle\",\n  \"type\": \"message\",\n  \"id\": \"bundle-data-export\",\n  \"entry\": [\n    {\n      \"resource\": {\n        \"resourceType\": \"MessageHeader\",\n        \"eventCoding\": {\n          \"system\": \"http://icanbwell.com/event-types\",\n          \"code\": \"data-export-completed\"\n        },\n        \"source\": {\n          \"endpoint\": \"https://icanbwell.com\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"https://client.system.com/webhook\"\n          }\n        ],\n        \"focus\": [\n          {\n            \"reference\": \"Person/789\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"http://icanbwell.com/fhir/StructureDefinition/download-url\",\n            \"valueUri\": \"https://app.prod.icanbwell.com/client_id#/auth?authCode=12345&redirectUri=https://app.prod.icanbwell.com/client_id#/download/12345?type=userDataExport\"\n          }\n        ]\n      }\n    },\n    {\n      \"fullUrl\": \"https://icanbwell.com/fhir/Person/789\",\n      \"resource\": {\n        \"resourceType\": \"Person\",\n        \"id\": \"789\",\n        \"identifier\": [\n          {\n            \"use\": \"official\",\n            \"system\": \"urn:client:identifier\",\n            \"value\": \"a5ddab6d-24b0-4e52-a99d-f33263db5997\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"Unauthorized\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9b00d82d-5438-4f39-9d96-ec511554e74a",
+          "name": "Internal server error.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"Bundle\",\n  \"type\": \"message\",\n  \"id\": \"bundle-data-export\",\n  \"entry\": [\n    {\n      \"resource\": {\n        \"resourceType\": \"MessageHeader\",\n        \"eventCoding\": {\n          \"system\": \"http://icanbwell.com/event-types\",\n          \"code\": \"data-export-completed\"\n        },\n        \"source\": {\n          \"endpoint\": \"https://icanbwell.com\"\n        },\n        \"destination\": [\n          {\n            \"endpoint\": \"https://client.system.com/webhook\"\n          }\n        ],\n        \"focus\": [\n          {\n            \"reference\": \"Person/789\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"http://icanbwell.com/fhir/StructureDefinition/download-url\",\n            \"valueUri\": \"https://app.prod.icanbwell.com/client_id#/auth?authCode=12345&redirectUri=https://app.prod.icanbwell.com/client_id#/download/12345?type=userDataExport\"\n          }\n        ]\n      }\n    },\n    {\n      \"fullUrl\": \"https://icanbwell.com/fhir/Person/789\",\n      \"resource\": {\n        \"resourceType\": \"Person\",\n        \"id\": \"789\",\n        \"identifier\": [\n          {\n            \"use\": \"official\",\n            \"system\": \"urn:client:identifier\",\n            \"value\": \"a5ddab6d-24b0-4e52-a99d-f33263db5997\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "de2a7bb1-13f4-4add-a428-f674f4032175",
+    "name": "Client Webhook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Client's Webhook API to receive bwell messages. The specification is heavily based on FHIR messaging  specification. Some additional notes:\n- The actual URL/POST method to be provided by the client. `/webhook` POST is a placeholder.\n- `destination.endpoint` in the request will reflect the client supplied URL.\n- The client user can be identified via the `urn:client:identifier` `value` in the `Person` resource of the request.\n\n**Resources**:\n- [Messaging using FHIR Resources](https://www.hl7.org/fhir/messaging.html)\n- [Message Header Resource](https://www.hl7.org/fhir/messageheader.html)\n",
+      "type": "text/plain"
+    }
+  }
+}

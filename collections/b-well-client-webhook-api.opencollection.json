@@ -1,0 +1,25 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Client Webhook API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Receive a bwell webhook event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/webhook",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "This endpoint accepts bwell async operation events to be handled by the client."
+    }
+  ],
+  "bundled": true
+}

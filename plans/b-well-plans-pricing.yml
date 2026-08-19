@@ -1,0 +1,52 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: b.well
+providerId: b-well
+generated: '2026-08-15'
+created: '2026-08-15'
+modified: '2026-08-15'
+method: searched
+source: https://www.icanbwell.com/
+tags:
+- Pricing
+- Health Data
+- Enterprise
+description: >-
+  b.well publishes no plans, tiers or prices. It sells a licensed enterprise platform
+  to health systems, health plans, employers and retail health brands, and its
+  developer platform is reached through a partner onboarding conversation rather than
+  a self-serve signup. There is no pricing page (https://www.icanbwell.com/pricing/
+  returns 404), the developer portal's complete documentation index
+  (https://developer.bwell.com/llms.txt) names no pricing, plan, tier or billing page,
+  and the portal's own welcome page documents no commercial terms. Production base
+  URLs are described in b.well's docs as "provided during onboarding", which is the
+  clearest statement of the model: access is contracted, not purchased.
+plan_count: 0
+pricing_model: enterprise-contract
+self_serve: false
+plans: []
+notes: >-
+  plan_count 0 is a measured absence, not an unread field. This is the normal posture
+  for a HIPAA-regulated consumer-mediated health data network — every integrator is a
+  covered entity or business associate under a signed agreement — but it does mean no
+  price, quota or overage is discoverable before a sales conversation.
+sources:
+- url: https://www.icanbwell.com/
+  scope: corporate site — solutions pages, no pricing navigation
+- url: https://developer.bwell.com/docs/welcome
+  scope: developer portal landing — no pricing, plans or signup
+x-evidence:
+  fetched: '2026-08-15'
+  evidence:
+  - url: https://www.icanbwell.com/pricing/
+    status: 404
+  - url: https://www.icanbwell.com/contact-us/
+    status: 404
+  - url: https://developer.bwell.com/llms.txt
+    status: 200
+  - url: https://developer.bwell.com/docs/welcome
+    status: 200
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

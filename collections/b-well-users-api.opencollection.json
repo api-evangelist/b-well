@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bwell User Data Operations Users API",
+    "version": "1.0.11"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate user data export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://user-data-ops.client-sandbox.icanbwell.com/users/:id/data-exports",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user's client-specific identifier which will vary by client. Please check with bwell customer support to verify the id to be used here."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Endpoint to initiate a user's request for personal health data export."
+        },
+        {
+          "info": {
+            "name": "Initiate user data deletion",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://user-data-ops.client-sandbox.icanbwell.com/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user's client-specific identifier which will vary by client. Please check with bwell customer support to verify the id to be used here."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Endpoint to initiate a request to delete a user's profile and associated information from bwell's system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

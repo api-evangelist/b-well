@@ -19,30 +19,26 @@ server:
   - production (endpoint provided during onboarding)
   authentication:
     scheme: bearer
-    description: >-
-      Every MCP request runs in an authorized end-user context. The bearer token is a
-      b.well user access token obtained through OAuth 2.0 token exchange (see
-      https://developer.bwell.com/docs/oauth-token-exchange). Most tools resolve
-      person_id from the `clientFhirPersonId` claim on that token when it is not
-      passed explicitly.
+    description: Every MCP request runs in an authorized end-user context. The bearer token is a b.well
+      user access token obtained through OAuth 2.0 token exchange (see https://developer.bwell.com/docs/oauth-token-exchange).
+      Most tools resolve person_id from the `clientFhirPersonId` claim on that token when it is not passed
+      explicitly.
 introspection:
   tools_list_probed: true
   tools_list_status: 401
-  tools_list_note: >-
-    POST tools/list against https://api.client-sandbox.icanbwell.com/mcp/ returns
-    401 Unauthorized with no OAuth challenge body — the live inputSchema set requires
-    an authenticated end-user token. The tool list below is transcribed from b.well's
-    own published Agents Catalog, where each tool has a dedicated documentation page
-    naming the exact tool identifier, its required and optional parameters, and its
-    return shape. Parameter detail is therefore documentation-grade, not
-    introspection-grade.
+  tools_list_note: POST tools/list against https://api.client-sandbox.icanbwell.com/mcp/ returns 401 Unauthorized
+    with no OAuth challenge body — the live inputSchema set requires an authenticated end-user token.
+    The tool list below is transcribed from b.well's own published Agents Catalog, where each tool has
+    a dedicated documentation page naming the exact tool identifier, its required and optional parameters,
+    and its return shape. Parameter detail is therefore documentation-grade, not introspection-grade.
 tools:
 - name: validate_insurance_coverage
   category: insurance
-  description: Checks whether a patient has active insurance coverage and identifies which
-    benefit plan(s) apply, combining FHIR Coverage resources with policy-document availability.
+  description: Checks whether a patient has active insurance coverage and identifies which benefit plan(s)
+    apply, combining FHIR Coverage resources with policy-document availability.
   docs: https://developer.bwell.com/docs/validate-insurance-coverage
-  parameters: [person_id]
+  parameters:
+  - person_id
 - name: list_available_insurance_docs
   category: insurance
   description: Lists the insurance policy documents available for the patient.
@@ -57,21 +53,30 @@ tools:
   docs: https://developer.bwell.com/docs/search-insurance-policy
 - name: get_demographics
   category: health-records
-  description: Retrieves the user's demographic information from their FHIR Person record,
-    with privacy labels and LLM behavior rules attached to sensitive fields.
+  description: Retrieves the user's demographic information from their FHIR Person record, with privacy
+    labels and LLM behavior rules attached to sensitive fields.
   docs: https://developer.bwell.com/docs/get-demographics
-  parameters: [person_id, debug]
+  parameters:
+  - person_id
+  - debug
 - name: get_health_scores
   category: health-records
   description: Retrieves the patient's health scores.
   docs: https://developer.bwell.com/docs/get-health-scores
 - name: get_fhir_record
   category: health-records
-  description: Retrieves patient medical records for a specific FHIR resource type
-    (Immunization, Condition, MedicationRequest, and others).
+  description: Retrieves patient medical records for a specific FHIR resource type (Immunization, Condition,
+    MedicationRequest, and others).
   docs: https://developer.bwell.com/docs/get-fhir-record-mcp-toolagent
-  parameters: [resource, person_id, active_only, start_date, end_date, maximum_tokens,
-    text_filters, count]
+  parameters:
+  - resource
+  - person_id
+  - active_only
+  - start_date
+  - end_date
+  - maximum_tokens
+  - text_filters
+  - count
 - name: get_patient_summary
   category: health-records
   description: Retrieves a summary of the patient's record.
@@ -86,22 +91,38 @@ tools:
   docs: https://developer.bwell.com/docs/get-wearables
 - name: get_labs
   category: health-records
-  description: Retrieves laboratory results from FHIR Observation resources, with named
-    lab-test filtering and table/timeline/statistics/csv/markdown output formats.
+  description: Retrieves laboratory results from FHIR Observation resources, with named lab-test filtering
+    and table/timeline/statistics/csv/markdown output formats.
   docs: https://developer.bwell.com/docs/get-labs
-  parameters: [person_id, labs, start_date, end_date, count, output_formats, ignore_cache,
-    debug]
+  parameters:
+  - person_id
+  - labs
+  - start_date
+  - end_date
+  - count
+  - output_formats
+  - ignore_cache
+  - debug
 - name: search_clinical_notes
   category: health-records
   description: Searches the patient's clinical notes (FHIR DocumentReference).
   docs: https://developer.bwell.com/docs/search-clinical-notes-mcp-toolagent
 - name: provider_search
   category: providers-connections
-  description: Read-only discovery of healthcare providers, practices, insurance entities,
-    labs and pharmacies in the b.well provider directory, filtered by geography and specialty.
+  description: Read-only discovery of healthcare providers, practices, insurance entities, labs and pharmacies
+    in the b.well provider directory, filtered by geography and specialty.
   docs: https://developer.bwell.com/docs/provider-search
-  parameters: [search_text, lat, lon, distance, include_populated_proa_only, include_inactive,
-    page_size, page_number, insurance_name, zipcode]
+  parameters:
+  - search_text
+  - lat
+  - lon
+  - distance
+  - include_populated_proa_only
+  - include_inactive
+  - page_size
+  - page_number
+  - insurance_name
+  - zipcode
 - name: search_connections
   category: providers-connections
   description: Searches the user's existing and available data-source connections.
@@ -116,11 +137,18 @@ tools:
   docs: https://developer.bwell.com/docs/get-scheduling-slots
 - name: schedule_appointment
   category: scheduling
-  description: Books an appointment by creating a FHIR Appointment resource from a slot
-    selected via get_scheduling_slots.
+  description: Books an appointment by creating a FHIR Appointment resource from a slot selected via get_scheduling_slots.
   docs: https://developer.bwell.com/docs/schedule-appointment
-  parameters: [start, minutes_duration, visit_type_id, provider_id, department_id, comment,
-    timezone_title, person_id, debug]
+  parameters:
+  - start
+  - minutes_duration
+  - visit_type_id
+  - provider_id
+  - department_id
+  - comment
+  - timezone_title
+  - person_id
+  - debug
 - name: get_appointments
   category: scheduling
   description: Retrieves the patient's appointments.
@@ -167,26 +195,44 @@ tools:
   docs: https://developer.bwell.com/docs/check-transfer-eligibility
 - name: transfer_prescription
   category: pharmacy
-  description: Initiates a prescription transfer to a pharmacy, given patient, insurance,
-    pharmacy and prescription detail plus pickup preferences.
+  description: Initiates a prescription transfer to a pharmacy, given patient, insurance, pharmacy and
+    prescription detail plus pickup preferences.
   docs: https://developer.bwell.com/docs/transfer-prescription
 - name: convert_zipcode_to_coordinates
   category: utility
-  description: Converts a 5-digit US ZIP code to latitude/longitude coordinates for
-    location-based searches.
+  description: Converts a 5-digit US ZIP code to latitude/longitude coordinates for location-based searches.
   docs: https://developer.bwell.com/docs/convert-zipcode-to-gps-latlon
-  parameters: [zipcode]
+  parameters:
+  - zipcode
 - name: get_current_date
   category: utility
   description: Returns the current date/time in a chosen format (date, datetime, iso, rfc3339).
   docs: https://developer.bwell.com/docs/get-current-datetime
-  parameters: [date_format]
+  parameters:
+  - date_format
 coverage:
   tools_documented: 31
-  categories: [insurance, health-records, providers-connections, scheduling, pharmacy, utility]
+  categories:
+  - insurance
+  - health-records
+  - providers-connections
+  - scheduling
+  - pharmacy
+  - utility
 x-evidence:
   fetched: '2026-08-06'
   llms_txt: https://developer.bwell.com/llms.txt
   llms_txt_status: 200
   tools_list_url: https://api.client-sandbox.icanbwell.com/mcp/
   tools_list_status: 401
+deployment:
+  mode: remote
+  endpoint: https://api.client-sandbox.icanbwell.com/mcp/
+  auth: oauth
+  auth_detail: >-
+    Bearer token obtained via OAuth 2.0 token exchange; anonymous POST tools/list
+    against the endpoint returns 401 Unauthorized with no OAuth challenge body.
+  verified: probed
+  probe: wall
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,175 @@
+openapi: 3.2.0
+info:
+  title: bwell User Data Operations Users API
+  description: This specification contains endpoints oriented towards facilitating requests around a user's personal data.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: API Support
+    email: support@icanbwell.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+- url: https://user-data-ops.client-sandbox.icanbwell.com
+- url: https://user-data-ops.prod.icanbwell.com
+tags:
+- name: Users
+paths:
+  /users/{id}/data-exports:
+    post:
+      summary: Initiate user data export
+      description: Endpoint to initiate a user's request for personal health data export.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The user's client-specific identifier which will vary by client. Please check with bwell customer support to verify the id to be used here.
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Export request accepted and processing has started.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Data export initiated successfully.
+        '401':
+          description: Invalid HMAC singature.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized. Please supply valid authorization.
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+        '500':
+          description: Server error when processing the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: There was an issue processing your request at this time. Please try again. If the problem persists contact bwell support at support@icanbwell.com.
+      security:
+      - HMACAuth: []
+      - HMACContentSHA512: []
+      - HMACHost: []
+      - HMACDate: []
+      - HMACClientUserToken: []
+      - HMACClientKey: []
+      tags:
+      - Users
+  /users/{id}:
+    delete:
+      summary: Initiate user data deletion
+      description: Endpoint to initiate a request to delete a user's profile and associated information from bwell's system.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The user's client-specific identifier which will vary by client. Please check with bwell customer support to verify the id to be used here.
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Deletion request accepted and processing has started.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User profile deletion initiated successfully.
+        '401':
+          description: Invalid HMAC signature.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+        '500':
+          description: Server error when processing the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: There was an issue processing your request at this time. Please try again. If the problem persists contact bwell support at support@icanbwell.com.
+      security:
+      - HMACAuth: []
+      - HMACContentSHA512: []
+      - HMACHost: []
+      - HMACDate: []
+      - HMACClientUserToken: []
+      - HMACClientKey: []
+      tags:
+      - Users
+components:
+  securitySchemes:
+    HMACAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: "# HMAC Authentication \nAuthorization using a secret key and signature content. To use HMAC authentication, clients need to generate an HMAC signature using their secret key. The signature should be included in the `Authorization` header as follows:\n```\nHMAC-SHA512 SignedHeaders=x-bwell-date;host;x-bwell-client-user-token;x-bwell-client-key;x-bwell-content-sha512&Signature=<hmac-sha512-signature>\n```\n## Authorization Assembly\nIn order to assemble the proper headers for HMAC authorization the following data is required:\n- HTTP Method\n- HTTP Path + Query Params\n- UTC Timestamp in RFC1123 format\n- DNS Host\n- bwell Client Key\n- Client User Token\n- Content Hash\n### Content Hash\nThe content hash is created by computing the SHA512 hash of the request content (an empty string is the intended content for a request with an empty body) and then converting the hash bytes into a Base64 string representation.\n### Signature \nThe HMAC signature is created by computing by HMAC SHA512 hash of the below template string followed by converting the hash bytes into a Base64 string representation:\n```\n\"$REQUEST_METHOD\\n$REQUEST_PATH_AND_QUERY\\n$TIMESTAMP;$DNS_HOST;$BWELL_CLIENT_USER_TOKEN;BWELL_CLIENT_KEY;$CONTENT_HASH\"\n```\nNOTE: The HMAC SHA512 created here will use the shared bwell client secret.\n##### Example\n```\n\"POST\\n/users/123/data-export\\nSun, 06 Nov 1994 08:49:37 GMT;api.yourservice.com;123456789;123456789;z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg=\"\n```\nNOTE:\n- Content hash above is SHA512 Base64 representation of an empty string.\n- Client key above is `123456789`.\n- Client user token above is `123456789`\n### Attach Headers\nWith all required data now computed attach the headers to the request.\n##### x-bwell-date\n```\nSun, 06 Nov 1994 08:49:37 GMT\n```\n##### x-bwell-client-user-token (example below)\n```\n123456789\n```\n##### x-bwell-client-key (example below)\n```\n123456789 \n```\n##### x-bwell-content-sha512\n```\nz4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg=\n```\n##### Authorization\n```\nHMAC-SHA512 SignedHeaders=x-bwell-date;host;x-bwell-client-user-token;x-bwell-client-key;x-bwell-content-sha512&Signature=6aJFRj3g/vtp2VchaokB+sfOUrDfPGKhcErIh68D7m/WaJpIoThSraiT8Nj8uE+B8AU+WqXfW2ajHpZCDahhOA==\n```\nNOTE: Many HTTP clients will attach the `Host` header by default. Make sure this is the case for the HTTP client used to interface with this API.\n"
+    HMACContentSHA512:
+      type: apiKey
+      in: header
+      name: x-bwell-content-sha512
+      description: The Base64 encoded SHA512 hash of request content.
+    HMACHost:
+      type: apiKey
+      in: header
+      name: Host
+      description: The DNS Host associated with the request.
+    HMACDate:
+      type: apiKey
+      in: header
+      name: x-bwell-date
+      description: UTC Timestamp in RFC1123 format.
+    HMACClientUserToken:
+      type: apiKey
+      in: header
+      name: x-bwell-client-user-token
+      description: Client specific user authentication token.
+    HMACClientKey:
+      type: apiKey
+      in: header
+      name: x-bwell-client-key
+      description: Client key. Provided to the client by bwell.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

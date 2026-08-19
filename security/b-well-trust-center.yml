@@ -1,0 +1,61 @@
+generated: '2026-08-15'
+method: searched
+source: https://www.icanbwell.com/health-data-security-for-consumers/
+url: https://www.icanbwell.com/health-data-security-for-consumers/
+name: b.well Health Data Security
+detail: >-
+  b.well does not operate a hosted trust center (no trust.icanbwell.com — TLS
+  handshake fails — and no /security/ or /trust/ page on the corporate site). It
+  publishes its security and compliance posture as a narrative page on its own domain,
+  which names the certifications below and describes the audit cadence behind them.
+certifications:
+- HITRUST
+- NIST Cybersecurity Framework (CSF)
+- HIPAA
+frameworks:
+- name: CARIN Alliance Trust Framework and Code of Conduct
+  voluntary: true
+  detail: >-
+    b.well states it "voluntarily follows the CARIN Alliance Trust Framework and Code
+    of Conduct" — the consumer-directed health data exchange code of conduct, which is
+    the relevant governance layer for a consumer-mediated network.
+audit:
+  cadence: annual security reviews; independent external verification at least biennially
+  quote: >-
+    "Our systems are subject to annual security reviews and have achieved HITRUST and
+    US NIST cybersecurity framework (CSF) certification, which require independent
+    verification of our security-related policies, procedures, and implemented controls
+    by external auditors on at least a biennial (2 year) basis."
+encryption:
+  quote: >-
+    "Your data is encrypted in secure servers, not stored on your local device; and
+    always encrypted during transmissions."
+  at_rest: true
+  in_transit: true
+gaps:
+- No downloadable or gated report portal (no SOC 2 / HITRUST report request flow published).
+- No report date, scope statement or auditor named, so the currency of each certification
+  cannot be verified from the public page.
+- SOC 2 is claimed for the bailey product in press material but is not asserted on b.well's
+  own security page, so it is NOT recorded as a certification here.
+evidence:
+- source: https://www.icanbwell.com/health-data-security-for-consumers/
+  keywords:
+  - hitrust
+  - nist cybersecurity framework
+  - hipaa
+  - carin alliance
+x-evidence:
+  fetched: '2026-08-15'
+  evidence:
+  - url: https://www.icanbwell.com/health-data-security-for-consumers/
+    status: 200
+  - url: https://www.icanbwell.com/security/
+    status: 404
+  - url: https://www.icanbwell.com/trust/
+    status: 404
+  - url: https://trust.icanbwell.com/
+    status: 0
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

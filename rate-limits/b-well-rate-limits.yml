@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: b.well
+providerId: b-well
+generated: '2026-08-15'
+created: '2026-08-15'
+modified: '2026-08-15'
+method: searched
+source: https://developer.bwell.com/llms.txt
+tags:
+- Rate Limiting
+- Health Data
+- FHIR
+description: >-
+  b.well publishes no rate limits, quotas or throttling policy. The complete
+  documentation index at https://developer.bwell.com/llms.txt (64,423 bytes, HTTP 200,
+  fetched 2026-08-15) contains zero occurrences of "rate limit", "ratelimit",
+  "throttle" or "quota", and no rate-limit page exists at
+  https://developer.bwell.com/docs/rate-limits. No limits could be observed at
+  runtime either: every b.well API host rejects anonymous requests before routing —
+  api.client-sandbox.icanbwell.com returns 401 Unauthorized,
+  user-data-ops.client-sandbox.icanbwell.com returns 403 Missing Authentication
+  Token, and fhir.icanbwell.com/4_0_0/metadata returns 401 with a FHIR
+  OperationOutcome — so no X-RateLimit-*/RateLimit-*/Retry-After header could be
+  captured on an unauthenticated response.
+limit_count: 0
+headers: null
+responseCodes: {}
+limits: []
+policies: []
+notes: >-
+  Honest zero, not an unchecked field. Limits may exist and be communicated
+  contractually during onboarding, but nothing is published, so an integrator cannot
+  size a workload and an agent cannot read a runtime backoff signal. Fixable by
+  b.well: publish the per-key/per-tenant limits and emit RateLimit-* plus Retry-After
+  on 429. Cross-referenced from conventions/b-well-conventions.yml (rate_limiting).
+fixable_by: b.well
+sources:
+- url: https://developer.bwell.com/llms.txt
+  scope: full documentation index — no rate-limit terms present
+- url: https://developer.bwell.com/docs/rate-limits
+  scope: probed, no such page
+x-evidence:
+  fetched: '2026-08-15'
+  evidence:
+  - url: https://developer.bwell.com/llms.txt
+    status: 200
+  - url: https://developer.bwell.com/docs/rate-limits
+    status: 429
+  - url: https://api.client-sandbox.icanbwell.com/v1/openapi.json
+    status: 401
+  - url: https://user-data-ops.client-sandbox.icanbwell.com/openapi.json
+    status: 403
+  - url: https://fhir.icanbwell.com/4_0_0/metadata
+    status: 401
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
