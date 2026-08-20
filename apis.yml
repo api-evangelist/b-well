@@ -31,6 +31,17 @@ tags:
 - Interoperability
 - Patient Access
 - Health Records
+- MCP
+tags_raw:
+- Company
+- Health
+- Healthcare
+- Digital Health
+- FHIR
+- Health Data
+- Interoperability
+- Patient Access
+- Health Records
 - Model Context Protocol
 apis:
 - aid: b-well:application-apis
@@ -84,6 +95,10 @@ apis:
   humanURL: https://developer.bwell.com/docs/aisdk-overview
   baseURL: https://api.client-sandbox.icanbwell.com/mcp/
   tags:
+  - MCP
+  - Artificial Intelligence
+  - Health Data
+  tags_raw:
   - Model Context Protocol
   - AI
   - Health Data
@@ -100,6 +115,8 @@ apis:
   humanURL: https://developer.bwell.com/docs/app-apis-overview
   baseURL: https://api.client-sandbox.icanbwell.com/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
