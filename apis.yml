@@ -17,6 +17,20 @@ description: 'b.well Connected Health is a Baltimore-based digital health platfo
 url: https://raw.githubusercontent.com/api-evangelist/b-well/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 created: '2026-08-06'
 modified: '2026-08-15'
