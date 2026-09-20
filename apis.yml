@@ -51,6 +51,9 @@ specificationVersion: '0.23'
 created: '2026-08-06'
 modified: '2026-08-15'
 image: https://www.icanbwell.com/wp-content/uploads/2023/01/bwell-logo.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-19
 tags:
 - Company
 - Health
