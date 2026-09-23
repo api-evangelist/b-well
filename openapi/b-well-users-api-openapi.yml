@@ -77,6 +77,8 @@ paths:
       - HMACClientKey: []
       tags:
       - Users
+      operationId: postUsersByIdDataExports
+      x-operation-id-source: derived
   /users/{id}:
     delete:
       summary: Initiate user data deletion
@@ -138,6 +140,8 @@ paths:
       - HMACClientKey: []
       tags:
       - Users
+      operationId: deleteUsersById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     HMACAuth:

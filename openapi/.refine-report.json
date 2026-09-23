@@ -1,20 +1,29 @@
 {
   "provider": "b-well",
   "sources": [
-    "b-well-users-api-openapi.yml",
-    "b-well-webhook-api-openapi.yml"
+    "_original/b-well-client-webhook-api-openapi.json",
+    "_original/b-well-user-data-operations-openapi.json"
   ],
   "outputs": [
-    "b-well-users-api-openapi.yml",
-    "b-well-webhook-api-openapi.yml"
+    "b-well-webhook-api-openapi.yml",
+    "b-well-users-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "b-well-users-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "b-well-webhook-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "b-well-client-webhook-api-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "b-well-client-webhook-api-openapi.json: tagged paths POST /webhook -> Webhook",
+    "b-well-client-webhook-api-openapi.json: declared missing tag: Webhook",
+    "b-well-user-data-operations-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "b-well-user-data-operations-openapi.json: tagged paths POST /users/{id}/data-exports -> Users",
+    "b-well-user-data-operations-openapi.json: tagged paths DELETE /users/{id} -> Users",
+    "b-well-user-data-operations-openapi.json: declared missing tag: Users",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "b-well-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "b-well-webhook-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

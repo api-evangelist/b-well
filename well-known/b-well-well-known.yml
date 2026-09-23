@@ -1,12 +1,10 @@
-generated: '2026-08-06'
+generated: '2026-09-19'
 method: searched
 source: live probes of every b.well web, docs, API and FHIR host
-notes: >-
-  Every /.well-known/* path on api.client-sandbox.icanbwell.com returns a blanket
-  401 Unauthorized (the gateway requires a bearer token before routing), so the
-  OAuth authorization-server and protected-resource metadata for the Application
-  APIs and the MCP server could not be read anonymously. The FHIR hosts do serve
-  an anonymous SMART-on-FHIR configuration document.
+notes: Every /.well-known/* path on api.client-sandbox.icanbwell.com returns a blanket 401 Unauthorized
+  (the gateway requires a bearer token before routing), so the OAuth authorization-server and protected-resource
+  metadata for the Application APIs and the MCP server could not be read anonymously. The FHIR hosts do
+  serve an anonymous SMART-on-FHIR configuration document.
 hosts:
 - host: https://www.icanbwell.com
   documents:
@@ -67,6 +65,11 @@ hosts:
     status: 401
   - path: /.well-known/agent.json
     status: 401
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: b-well-api-oauth-protected-resource.json
+    bytes: 242
+  path_echo_control: passed
 - host: https://developer.bwell.com
   documents:
   - path: /llms.txt
@@ -78,6 +81,29 @@ hosts:
     status: 404
   - path: /.well-known/agent.json
     status: 404
+- host: https://auth.client-sandbox.icanbwell.com
+  documents:
+  - path: /v1/apps/agentic/P39oKAShA9pUPaLrEgcnantQuh4J/RS3IY1KacCpI5uv8yOYF1gXN1xXtK/.well-known/oauth-authorization-server
+    status: 200
+    file: b-well-auth-oauth-authorization-server.json
+    bytes: 1953
+  path_echo_control: passed
 x-evidence:
   fetched: '2026-08-06'
   agent_card_found: false
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://api.client-sandbox.icanbwell.com
+    path: /.well-known/oauth-protected-resource
+    file: b-well-api-oauth-protected-resource.json
+  - host: https://auth.client-sandbox.icanbwell.com
+    path: /v1/apps/agentic/P39oKAShA9pUPaLrEgcnantQuh4J/RS3IY1KacCpI5uv8yOYF1gXN1xXtK/.well-known/oauth-authorization-server
+    file: b-well-auth-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
