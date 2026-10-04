@@ -1,31 +1,30 @@
-# Kin Score artifact — b-well — 2026-08-25T154045
+# Kin Score artifact — b-well — 2026-09-22T213221
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: b-well
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 58.0
+  schema_version: 0.22.0
+  scored_at: '2026-09-22'
+  run_ts: 2026-09-22T213221
+  composite: 56.7
   band: strong
   facets:
-    discoverability: 92.6
-    contract_quality: 57.5
-    governance: 30.3
-    operational_transparency: 31.6
-    developer_ergonomics: 48.2
-    commercial_clarity: 43.4
-    contract_governance: 30.3
+    discoverability: 75.9
+    contract_quality: 62.4
+    contract_governance: 18.2
+    operational_transparency: 39.5
+    developer_ergonomics: 49.4
     access_clarity: 43.4
   agent_readiness:
-    score: 38.5
+    score: 57.7
     band: agent-ready
+    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
-      mcp_server: documented
-      auth_clarity: bearer
+      mcp_server: verified
+      auth_clarity: served
       idempotency: false
       error_semantics: documented
       openapi_examples: verified
@@ -33,12 +32,12 @@ kin_score:
       event_surface_described: true
       agent_skills: derived
       well_known_catalog: false
-      consent_identity: true
+      consent_identity: false
       agent_card: false
       dry_run_mode: false
-      delegated_identity: false
-      protected_resource_metadata: false
-      dynamic_client_registration: false
+      delegated_identity: served
+      protected_resource_metadata: verified
+      dynamic_client_registration: true
       agentic_commerce: false
   regulatory:
     applies: true
@@ -46,13 +45,16 @@ kin_score:
     regime_id: health
     score: 73.8
     matched_via: tags
+  open_source:
+    applies: true
+    score: 50.0
   provenance:
     mcp: first-party
     skills: derived
     agentic_access: derived
     conformance: first-party
     contracts:
-      total: 4
+      total: 2
       derived: 0
       coverage: 0.0
-      callable: 50.0
+      callable: 100.0
