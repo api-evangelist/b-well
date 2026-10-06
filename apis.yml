@@ -49,7 +49,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-08-06'
-modified: '2026-08-15'
+modified: '2026-10-06'
 image: https://www.icanbwell.com/wp-content/uploads/2023/01/bwell-logo.png
 x-docs-platform: readme
 x-docs-platform-confidence: high
@@ -186,6 +186,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://resources.icanbwell.com/resource-type/blog/
+  type: Blog
+- url: https://resources.icanbwell.com/feed/
+  type: BlogRSS
 - type: Overlay
   url: overlays/b-well-client-webhook-api-overlay.yaml
 - type: Releases
