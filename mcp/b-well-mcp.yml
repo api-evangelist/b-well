@@ -234,3 +234,16 @@ deployment:
   source: wall re-adjudication 2026-09-11 (RFC 9728 / JSON-RPC envelope)
   probe_prior: wall
   probe_why: RFC 9728 challenge on the MCP path only
+rfc9728:
+  endpoint: https://api.client-sandbox.icanbwell.com/mcp/
+  metadata_url: https://api.client-sandbox.icanbwell.com/.well-known/oauth-protected-resource/mcp
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://api.client-sandbox.icanbwell.com/mcp
+    authorization_servers:
+    - https://auth.client-sandbox.icanbwell.com/v1/apps/agentic/P39oKAShA9pUPaLrEgcnantQuh4J/RS3IY1KacCpI5uv8yOYF1gXN1xXtK
+    bearer_methods_supported:
+    - header
