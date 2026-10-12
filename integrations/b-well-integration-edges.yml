@@ -1,0 +1,40 @@
+edges:
+- partner_name: CommonWell Health Alliance
+  partner: null
+  type: contract
+  channel: network-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
+  contract_reference:
+    network: CommonWell Health Alliance
+    spec_file: null
+    role: member
+    listed_name: b.well
+    listing_page: https://www.commonwellalliance.org/how-to-participate/commonwell-members/
+    network_id: icanbwell.com
+    matched_domain: icanbwell.com
+    detected_by: sweep-health-networks.py
+    detected: '2026-10-12'
+- partner_name: CommonWell Health Alliance
+  partner: null
+  type: contract
+  channel: network-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-connected-products&_fields=id,link,content
+  contract_reference:
+    network: CommonWell Health Alliance
+    spec_file: null
+    role: connected-product
+    listed_name: B.well Connected Health
+    listing_page: https://www.commonwellalliance.org/connect-to-the-network/commonwell-connected-products/
+    network_id: icanbwell.com
+    matched_domain: icanbwell.com
+    detected_by: sweep-health-networks.py
+    detected: '2026-10-12'
+generated: '2026-10-12'
+method: searched
+checked:
+- https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-connected-products&_fields=id,link,content
+- https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
