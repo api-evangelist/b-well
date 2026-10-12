@@ -1,0 +1,28 @@
+{
+  "repo": "b-well",
+  "feeds": [
+    {
+      "source": "https://resources.icanbwell.com/resource-type/blog/",
+      "feed_url": "https://resources.icanbwell.com/resource-type/blog/feed/",
+      "title": "",
+      "saved": 2,
+      "method": "discovered"
+    },
+    {
+      "source": "https://resources.icanbwell.com/feed/",
+      "feed_url": "https://resources.icanbwell.com/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    },
+    {
+      "source": "https://resources.icanbwell.com/",
+      "feed_url": "https://resources.icanbwell.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 3,
+  "fetched": "2026-10-10T13:15:00Z"
+}
