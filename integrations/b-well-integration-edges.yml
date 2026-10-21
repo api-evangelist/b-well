@@ -93,6 +93,43 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: DirectTrust Accreditation (health IT)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://accreditation.directtrust.org/accredited-organization-detail/?accountID=6674830000003340190
+  category: Health IT accreditation (Direct exchange, health networks, privacy & security)
+  contract_reference:
+    register: DirectTrust Accredited Organizations (accreditation.directtrust.org; EHNAC merged into DirectTrust)
+    spec_file: null
+    standard: DirectTrust / EHNAC health IT accreditation
+    role: accredited
+    registered_name: b.well Connected Health
+    register_id: '6674830000003340190'
+    website: https://www.icanbwell.com/
+    matched_domain: icanbwell.com
+    matched_by: domain
+    identity_source: the website the organization filed on its DirectTrust detail page (no lookup)
+    programs:
+    - program: CARIN Code of Conduct for Consumer-Facing Applications
+      status: Accreditation
+      expiry: '2026-12-31'
+    certified_products:
+    - product: DirectTrust CARIN Code of Conduct for Consumer-Facing Applications
+      program: CARIN Code of Conduct for Consumer-Facing Applications
+      lapsed: false
+      expiry: '2026-12-31'
+    market_fit: own apis.yml tags carry a health IT term
+    signal_note: certified_products = one entry per granted DirectTrust PROGRAM (accreditation type); Candidate
+      / Provisional = participation only; lapsed when the expiry month has passed; e-Rx programs (EPCS, ePrescribing-EHN)
+      are counted by e-prescribing, never here
+    detected_by: sweep-certified-health-it.py
+    detected: '2026-10-20'
+  detected_by: sweep-certified-health-it.py
+  first_seen: '2026-10-20'
 generated: '2026-10-12'
 method: searched
 checked:
@@ -107,11 +144,15 @@ checked:
 - https://rubygems.org/api/v1
 - https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-connected-products&_fields=id,link,content
 - https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
+- https://accreditation.directtrust.org/accredited-organizations
+- https://carequality.org/members
+- https://chpl.healthit.gov/rest
+- https://hitrustalliance.net/assurance-reports
 source:
-- https://api.nuget.org/v3
-- https://crates.io/api/v1
-- https://proxy.golang.org
-- https://pypi.org/pypi
 - https://registry.npmjs.org
-- https://repo1.maven.org/maven2
+- https://pypi.org/pypi
 - https://rubygems.org/api/v1
+- https://crates.io/api/v1
+- https://repo1.maven.org/maven2
+- https://api.nuget.org/v3
+- https://proxy.golang.org

@@ -21,5 +21,103 @@
     matched_domain: icanbwell.com
     detected_by: sweep-health-networks.py
     detected: '2026-10-12'
-  status: pending-partner-spec
+  status: not-a-workflow
+  arazzo: null
+- slug: b-well-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@icanbwell/bwell-sdk-ts
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@icanbwell/bwell-sdk-ts'
+      version: 1.117.0
+      released: '2026-10-16'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@icanbwell/bwell-sdk-ts
+      repo_leg: github-org:icanbwell
+      publisher_leg: email:icanbwell.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: b-well-cloud-security-alliance-star-registry
+  label: Cloud Security Alliance STAR Registry
+  partner_name: Cloud Security Alliance STAR Registry
+  category: Cloud security assurance
+  type: register
+  channel: standard-directory
+  evidence: https://cloudsecurityalliance.org/star/registry/b-well-connected-health/services/b-well-connected-health-platform
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-1
+    registered_name: b.well Connected Health
+    registry_id: b-well-connected-health
+    service_url: https://www.icanbwell.com/health-network/
+    matched_domain: icanbwell.com
+    matched_by: domain
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    certified_products: []
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: b-well-directtrust-accreditation-health-it
+  label: DirectTrust Accreditation (health IT)
+  partner_name: DirectTrust Accreditation (health IT)
+  category: Health IT accreditation (Direct exchange, health networks, privacy & security)
+  type: register
+  channel: standard-directory
+  evidence: https://accreditation.directtrust.org/accredited-organization-detail/?accountID=6674830000003340190
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DirectTrust Accredited Organizations (accreditation.directtrust.org; EHNAC merged into DirectTrust)
+    spec_file: null
+    standard: DirectTrust / EHNAC health IT accreditation
+    role: accredited
+    registered_name: b.well Connected Health
+    register_id: '6674830000003340190'
+    website: https://www.icanbwell.com/
+    matched_domain: icanbwell.com
+    matched_by: domain
+    identity_source: the website the organization filed on its DirectTrust detail page (no lookup)
+    programs:
+    - program: CARIN Code of Conduct for Consumer-Facing Applications
+      status: Accreditation
+      expiry: '2026-12-31'
+    certified_products:
+    - product: DirectTrust CARIN Code of Conduct for Consumer-Facing Applications
+      program: CARIN Code of Conduct for Consumer-Facing Applications
+      lapsed: false
+      expiry: '2026-12-31'
+    market_fit: own apis.yml tags carry a health IT term
+    signal_note: certified_products = one entry per granted DirectTrust PROGRAM (accreditation type); Candidate
+      / Provisional = participation only; lapsed when the expiry month has passed; e-Rx programs (EPCS, ePrescribing-EHN)
+      are counted by e-prescribing, never here
+    detected_by: sweep-certified-health-it.py
+    detected: '2026-10-20'
+  status: not-a-workflow
   arazzo: null
