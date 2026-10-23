@@ -5,14 +5,14 @@
       "source": "https://resources.icanbwell.com/resource-type/blog/",
       "feed_url": "https://resources.icanbwell.com/resource-type/blog/feed/",
       "title": "",
-      "saved": 2,
+      "saved": 0,
       "method": "discovered"
     },
     {
       "source": "https://resources.icanbwell.com/feed/",
       "feed_url": "https://resources.icanbwell.com/feed/",
       "title": "",
-      "saved": 1,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -21,8 +21,15 @@
       "title": "",
       "saved": 0,
       "method": "discovered"
+    },
+    {
+      "source": "https://resources.icanbwell.com/resource-type/blog/feed/",
+      "feed_url": "https://resources.icanbwell.com/resource-type/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "post_count": 3,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 16,
+  "fetched": "2026-10-17T14:53:57Z"
 }
